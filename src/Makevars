@@ -1,0 +1,221 @@
+### As a Makefile
+
+### Include configurations.
+MkInclude = ${R_HOME}/etc${R_ARCH}/Makeconf
+
+### Setup R flags.
+PKG_FFLAGS = $(SAFE_FFLAGS) -w
+PKG_LIBS = $(FLIBS)
+
+### Setup R source code and objects
+OBJECTS = $(QZ_OBJS) $(R_OBJS)
+
+### Start making here.
+all: $(SHLIB)
+
+$(SHLIB): $(OBJECTS)
+
+clean:
+	@rm -rf *.o *.d *.rc *.so* *.dylib *.dll *.a *.lib \
+                Makedeps $(SHLIB) $(OBJECTS)
+
+
+### All object files.
+R_OBJS= \
+R_dgees.o \
+R_dgeev.o \
+R_dgges.o \
+R_dggev.o \
+R_dtgsen.o \
+R_dtrsen.o \
+R_zgees.o \
+R_zgeev.o \
+R_zgges.o \
+R_zggev.o \
+R_ztgsen.o \
+R_ztrsen.o
+
+QZ_OBJS= \
+qz/dasum.o \
+qz/daxpy.o \
+qz/dcabs1.o \
+qz/dcopy.o \
+qz/ddot.o \
+qz/dgebak.o \
+qz/dgebal.o \
+qz/dgecon.o \
+qz/dgees.o \
+qz/dgeev.o \
+qz/dgegv.o \
+qz/dgehd2.o \
+qz/dgehrd.o \
+qz/dgemm.o \
+qz/dgemv.o \
+qz/dgeqr2.o \
+qz/dgeqrf.o \
+qz/dger.o \
+qz/dgerq2.o \
+qz/dgesc2.o \
+qz/dgetc2.o \
+qz/dggbak.o \
+qz/dggbal.o \
+qz/dgges.o \
+qz/dggev.o \
+qz/dgghrd.o \
+qz/dhgeqz.o \
+qz/dhseqr.o \
+qz/disnan.o \
+qz/dlabad.o \
+qz/dlacn2.o \
+qz/dlacpy.o \
+qz/dladiv.o \
+qz/dlaexc.o \
+qz/dlag2.o \
+qz/dlagv2.o \
+qz/dlahqr.o \
+qz/dlahr2.o \
+qz/dlaisnan.o \
+qz/dlaln2.o \
+qz/dlamch.o \
+qz/dlange.o \
+qz/dlanhs.o \
+qz/dlanv2.o \
+qz/dlapy2.o \
+qz/dlapy3.o \
+qz/dlaqr0.o \
+qz/dlaqr1.o \
+qz/dlaqr2.o \
+qz/dlaqr3.o \
+qz/dlaqr4.o \
+qz/dlaqr5.o \
+qz/dlarf.o \
+qz/dlarfb.o \
+qz/dlarfg.o \
+qz/dlarft.o \
+qz/dlarfx.o \
+qz/dlartg.o \
+qz/dlascl.o \
+qz/dlaset.o \
+qz/dlassq.o \
+qz/dlasv2.o \
+qz/dlaswp.o \
+qz/dlasy2.o \
+qz/dlatdf.o \
+qz/dlatrs.o \
+qz/dnrm2.o \
+qz/dorg2r.o \
+qz/dorghr.o \
+qz/dorgqr.o \
+qz/dorgr2.o \
+qz/dorm2r.o \
+qz/dormhr.o \
+qz/dormqr.o \
+qz/dormr2.o \
+qz/drot.o \
+qz/drscl.o \
+qz/dscal.o \
+qz/dswap.o \
+qz/dtgevc.o \
+qz/dtgex2.o \
+qz/dtgexc.o \
+qz/dtgsen.o \
+qz/dtgsy2.o \
+qz/dtgsyl.o \
+qz/dtrevc.o \
+qz/dtrexc.o \
+qz/dtrmm.o \
+qz/dtrmv.o \
+qz/dtrsen.o \
+qz/dtrsv.o \
+qz/dtrsyl.o \
+qz/dzasum.o \
+qz/dznrm2.o \
+qz/dzsum1.o \
+qz/idamax.o \
+qz/ieeeck.o \
+qz/iladlc.o \
+qz/iladlr.o \
+qz/ilaenv.o \
+qz/ilazlc.o \
+qz/ilazlr.o \
+qz/iparmq.o \
+qz/izamax.o \
+qz/izmax1.o \
+qz/lsame.o \
+qz/xerbla.o \
+qz/zaxpy.o \
+qz/zcopy.o \
+qz/zdotc.o \
+qz/zdotu.o \
+qz/zdrscl.o \
+qz/zdscal.o \
+qz/zgebak.o \
+qz/zgebal.o \
+qz/zgecon.o \
+qz/zgees.o \
+qz/zgeev.o \
+qz/zgehd2.o \
+qz/zgehrd.o \
+qz/zgemm.o \
+qz/zgemv.o \
+qz/zgeqr2.o \
+qz/zgeqrf.o \
+qz/zgerc.o \
+qz/zgeru.o \
+qz/zgesc2.o \
+qz/zgetc2.o \
+qz/zggbak.o \
+qz/zggbal.o \
+qz/zgges.o \
+qz/zggev.o \
+qz/zgghrd.o \
+qz/zhgeqz.o \
+qz/zhseqr.o \
+qz/zlacgv.o \
+qz/zlacn2.o \
+qz/zlacpy.o \
+qz/zladiv.o \
+qz/zlahqr.o \
+qz/zlahr2.o \
+qz/zlange.o \
+qz/zlanhs.o \
+qz/zlaqr0.o \
+qz/zlaqr1.o \
+qz/zlaqr2.o \
+qz/zlaqr3.o \
+qz/zlaqr4.o \
+qz/zlaqr5.o \
+qz/zlarf.o \
+qz/zlarfb.o \
+qz/zlarfg.o \
+qz/zlarft.o \
+qz/zlartg.o \
+qz/zlascl.o \
+qz/zlaset.o \
+qz/zlassq.o \
+qz/zlaswp.o \
+qz/zlatdf.o \
+qz/zlatrs.o \
+qz/zrot.o \
+qz/zscal.o \
+qz/zswap.o \
+qz/ztgevc.o \
+qz/ztgex2.o \
+qz/ztgexc.o \
+qz/ztgsen.o \
+qz/ztgsy2.o \
+qz/ztgsyl.o \
+qz/ztrevc.o \
+qz/ztrexc.o \
+qz/ztrmm.o \
+qz/ztrmv.o \
+qz/ztrsen.o \
+qz/ztrsv.o \
+qz/ztrsyl.o \
+qz/zung2r.o \
+qz/zunghr.o \
+qz/zungqr.o \
+qz/zunm2r.o \
+qz/zunmhr.o \
+qz/zunmqr.o
+

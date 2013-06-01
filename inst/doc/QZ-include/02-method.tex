@@ -1,0 +1,68 @@
+
+\section[Methods]{Methods}
+\label{sec:methods}
+\addcontentsline{toc}{section}{\thesection. Methods}
+
+Some details can be found on wikipedia website at
+\begin{center}
+\url{http://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix}
+\end{center}
+for generalized eigenvalues, and at
+\begin{center}
+\url{http://en.wikipedia.org/wiki/Schur_decomposition}
+\end{center}
+about QZ decomposition or generalized Schur form.
+The LAPACK~\citep{laug} also provides functions to
+solve these problems.
+
+
+\subsection[Generalized Eigenvalues for Pair Matrices]{Generalized Eigenvalues for Pair Matrices}
+\label{sec:generalized_eigenvalues_pair}
+\addcontentsline{toc}{subsection}{\thesubsection. Generalized Eigenvalues for Pair Matrices}
+
+Suppose $\bA$ and $\bB$ are two $N\times N$ non-symmetric matrices
+which can be both in real or in complex. The goal is to find right generalized
+eigen vectors $\bv$ such that $\bA \bv = \lambda \bB \bv$, or left generalized
+eigen vectors $\bu$ such
+that $\bu^{H} \bA = \lambda \bu^{H} \bB$ where $\bu^{H}$ is the
+conjugate-transpose of $\bu$.
+Also, $\lambda$ is called generalized eigenvalues of $\bA$ and $\bB$
+which obeys $\mbox{det}(\bA - \lambda\bB) = 0$.
+Note that $\lambda$, $\bu$, and $\bv$ may be complex even $\bA$ and $\bB$
+are in real.
+
+Suppose $\bB$ is an identity matrix $\bI$, then the problem reduces to
+traditional eigenvalue problem. i.e. This is a special case.
+
+
+\subsection[QZ Decomposition for Pair Matrices]{QZ Decomposition for Pair Matrices}
+\label{sec:qz_decomposition_pair}
+\addcontentsline{toc}{subsection}{\thesubsection. QZ Decomposition for Pair Matrices}
+
+Suppose $\bA$ and $\bB$ are two $N\times N$ non-symmetric matrices
+which can be both in real or in complex.
+The QZ decomposition factorizes both matrices as
+\begin{itemize}
+\item
+$\bA = \bQ\bS\bZ^\top$ and $\bB = \bQ\bT\bZ^\top$
+if $\bA$ and $\bB$ are real, or
+\item
+$\bA = \bQ\bS\bZ^{H}$ and $\bB = \bQ\bT\bZ^{H}$
+if $\bA$ and $\bB$ are complex
+\end{itemize}
+where $\bQ$ and $\bZ$ are unitary and $\bS$ and $\bT$ are upper triangular.
+The unitary means $\bX\bX^{H} = \bI$ if $\bX$ is complex or
+$\bX\bX^\top = \bI$ if $\bX$ is real where $\bI$ is the identity matrix.
+
+The QZ decomposition is also called generalized Schur decomposition
+where $\bS$ and $\bT$ are the Schur form of $\bA$ and $\bB$.
+The generalized eigenvalues $\lambda$ that solve the generalized eigenvalue
+problem $\bA \bx = \lambda \bB \bx$ where $\bx$ is an unknown nonzero vector
+and $\lambda_i = \bS_{ii} / \bT_{ii}$.
+
+Suppose $\bB$ is an identity matrix $\bI$, then the problem reduces to
+fine $\bQ$ such that $\bA = \bQ\bS\bQ^{-1}$ for real $\bA$ or
+$\bA = \bQ\bS\bQ^{H}$ for complex $\bA$.
+i.e. This is a special case.
+
+

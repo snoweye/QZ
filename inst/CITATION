@@ -1,0 +1,22 @@
+citHeader("To cite QZ in a publication use:")
+
+citEntry(
+  entry = "Misc",
+  title = "{QZ}: {QZ} Decomposition",
+  author = personList(as.person("Wei-Chen Chen")),
+  year = "2013",
+  note = "{R} Package, URL http://cran.r-project.org/package=QZ",
+  textVersion = "Chen, W.-C. (2013) QZ: QZ Decomposition. R Package, URL http://cran.r-project.org/package=QZ",
+  key = "Chen2013QZpackage"
+)
+
+citEntry(
+  entry = "Manual",
+  title = "A Quick Guide for the {QZ} Package",
+  author = personList(as.person("Wei-Chen Chen")),
+  year = "2013",
+  note = "{R} Vignette, URL http://cran.r-project.org/package=QZ",
+  textVersion = "Chen, W.-C. (2013) A Quick Guide for the QZ Package. R Vignette, URL http://cran.r-project.org/package=QZ",
+  key = "Chen2013QZvignette"
+)
+

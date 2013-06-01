@@ -1,0 +1,81 @@
+
+
+\section[Implementation]{Implementation}
+\label{sec:implementation}
+\addcontentsline{toc}{section}{\thesection. Implementation}
+
+Two main functions are \code{qz.geigen()}
+for generalized eigenvalues, and \code{qz()} for QZ decomposition with
+reordering capability. Both functions are able to deal a single matrix $\bA$
+or a paired matrices $(\bA,\bB)$ in both complex and real systems.
+Both functions are wrapper functions for several lower level
+\proglang{R} functions \code{qz.*()} which are also wrapper functions
+via \code{.Call()}
+for \proglang{C} and \proglang{Fortran} functions to LAPACK library 
+version 3.4.2.
+
+LAPACK library is incorporated in \pkg{QZ} including
+complex*16 and double precision for complex and real systems respectively.
+\pkg{QZ} has functions of
+LAPACK and BLAS~\citep{BLAS}
+independently to the \proglang{R}'s LAPACK and BLAS libraries
+since some functions are not available.
+Table~\ref{tab:qz_functions} provides a detail lists for the \code{qz.*()}
+functions.
+
+
+\begin{table}[h!tb]
+\begin{center}
+\caption{\pkg{QZ} functions}
+\label{tab:qz_functions}
+\begin{tabular}{c|l|c|l|l} \hline \hline
+Function &
+Wrapper          & Main Input        & System & Purpose \\
+\hline
+
+\multirow{2}{*}{\code{qz.geigen()}} &
+\code{qz.zgeev}  & $\bA$               & Complex & \multirow{2}{*}{Generalized eigenvalues} \\
+
+&
+\code{qz.dgeev}  & $\bA$               & Real    & \\
+\hline
+
+\multirow{4}{*}{\code{qz()}} &
+\code{qz.zgees}  & $\bA$               & Complex & \multirow{2}{*}{QZ decomposition} \\
+
+&
+\code{qz.dgees}  & $\bA$               & Real    & \\
+\cline{2-5}
+
+&
+\code{qz.ztrsen} & $\bT, \bQ$          & Complex & \multirow{2}{*}{Reordering} \\
+
+&
+\code{qz.dtrsen} & $\bT, \bQ$          & Real    & \\
+\hline \hline
+
+\multirow{2}{*}{\code{qz.geigen()}} &
+\code{qz.zggev}  & $(\bA,\bB)$         & Complex & \multirow{2}{*}{Generalized eigenvalues} \\
+
+&
+\code{qz.dggev}  & $(\bA,\bB)$         & Real    & \\
+\hline
+
+\multirow{4}{*}{\code{qz()}} &
+\code{qz.zgges}  & $(\bA,\bB)$         & Complex & \multirow{2}{*}{QZ decomposition} \\
+
+&
+\code{qz.dgges}  & $(\bA,\bB)$         & Real    & \\
+\cline{2-5}
+
+&
+\code{qz.ztgsen} & $(\bS,\bT),\bQ,\bZ$ & Complex & \multirow{2}{*}{Reordering} \\
+
+&
+\code{qz.dtgsen} & $(\bS,\bT),\bQ,\bZ$ & Real    & \\
+
+\hline \hline
+\end{tabular}
+\end{center}
+\end{table}
+
