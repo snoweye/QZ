@@ -1,3 +1,9 @@
+2013-06-02: Ver. 0.1-1
+  * Change typos.
+  * Drop BLAS functions and part of LAPACK functions.
+  * Change Makevars.
+  * Change authorship.
+
 2013-06-01: Ver. 0.1-0
   * Change Makevars.
   * Check for first release.

@@ -2,8 +2,8 @@ Package: QZ
 Version: 0.1-1
 Date: 2013-06-01
 Title: Generalized Eigenvalues and QZ Decomposition
-Authors@R: c(person("Wei-Chen", "Chen", role = c("aut", "cre"), email =
-        "wccsnow@gmail.com"))
+Author: Wei-Chen Chen, partly adapted and using routines from LAPACK.
+Maintainer: Wei-Chen Chen <wccsnow@gmail.com>
 Depends: R (>= 2.15.0), methods
 Enhances: fda
 LazyLoad: yes
@@ -14,7 +14,4 @@ Description: QZ package provides generalized eigenvalues and QZ decomposition
         mechanism. The package is mainly based complex*16 and double
         precision of LAPACK library (version 3.4.2.)
 License: Mozilla Public License 2.0
-BugReports: wccsnow@gmail.com
-Packaged: 2013-06-01 15:33:05 UTC; snoweye
-Author: Wei-Chen Chen [aut, cre]
-Maintainer: Wei-Chen Chen <wccsnow@gmail.com>
+Packaged: 2013-06-02 18:03:44 UTC; snoweye
