@@ -3,7 +3,7 @@
   * Drop BLAS functions and part of LAPACK functions.
   * Change Makevars.
   * Change authorship.
-  * Add configure.
+  * Add and modify configure.
 
 2013-06-01: Ver. 0.1-0
   * Change Makevars.

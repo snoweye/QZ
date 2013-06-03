@@ -1651,7 +1651,7 @@ FLIBS=`${R_SCMD} FLIBS`
 BLAS_LIBS=`${R_SCMD} BLAS_LIBS`
 LAPACK_LIBS=`${R_SCMD} LAPACK_LIBS`
 
-if test "X$LAPACK_LIBS" = "X"; then
+if test "X$LAPACK_LIBS" = "X" -o "X$LAPACK_LIBS" = "X-llapack"; then
     QZ_OBJS=""
 else
 

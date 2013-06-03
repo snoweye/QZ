@@ -9,17 +9,30 @@ if test -z "${R_HOME}"; then
   exit 1
 fi
 
-dnl Check LAPACK.
+dnl Obtain from R.
 R_SCMD="${R_HOME}/bin/R CMD config"
 FLIBS=`${R_SCMD} FLIBS`
 BLAS_LIBS=`${R_SCMD} BLAS_LIBS`
 LAPACK_LIBS=`${R_SCMD} LAPACK_LIBS`
 
-if test "X$LAPACK_LIBS" = "X"; then
+dnl Check tools.
+AC_CHECK_PROG([ls_ok], [ls], [yes], [no], ,)
+AC_CHECK_PROG([echo_ok], [echo], [yes], [no], ,)
+AC_CHECK_PROG([sed_ok], [sed], [yes], [no], ,)
+AC_CHECK_PROG([grep_ok], [grep], [yes], [no], ,)
+
+dnl Check Rlapack.
+if test "X$echo_ok" = "Xyes" -a "X$grep_ok" = "Xyes"; then
+  Rlapack_ok=`echo ${LAPACK_LIBS} | grep "\-lRlapack"`
+else
+  Rlapack_ok="NA"
+fi
+
+if test "X$Rlapack_ok" = "XNA"; then
   dnl An external LAPACK is used in run time.
   QZ_OBJS=""
 else
-  dnl Check Rlapack.
+  dnl Rlapack is used.
 
   ### XERBLA is not available.
   # AC_LANG(Fortran)
@@ -35,9 +48,6 @@ else
   # AC_CHECK_HEADER([R_ext/Lapack.h])
   # AC_CHECK_FUNC([zgeev], [zgeev_ok=yes], [zgeev_ok=no])
 
-  AC_CHECK_PROG([ls_ok], [ls], [yes], [no], ,)
-  AC_CHECK_PROG([sed_ok], [sed], [yes], [no], ,)
-  AC_CHECK_PROG([grep_ok], [grep], [yes], [no], ,)
   if test "X$ls_ok" = "Xyes" -a "X$sed_ok" = "Xyes" -a "X$grep_ok" = "Xyes"; then
     ### Check R_ext/Lapack.h
     LAPACK_HEADER="${R_HOME}/include/R_ext/Lapack.h"
