@@ -24,7 +24,14 @@ AC_CHECK_PROG([grep_ok], [grep], [yes], [no], ,)
 dnl Check Rlapack.
 if test "X$echo_ok" = "Xyes" -a "X$grep_ok" = "Xyes"; then
   Rlapack_ok=`echo ${LAPACK_LIBS} | grep "\-lRlapack"`
+  if test "X$Rlapack_ok" = "X"; then
+    dnl Rlapack is not found.
+    Rlapack_ok="NA"
+  else
+    echo "Found Rlpack from ${Rlapack_ok}"
+  fi
 else
+  dnl echo and grep are not found.
   Rlapack_ok="NA"
 fi
 
@@ -57,7 +64,7 @@ else
     for func in ${funcs}
     do
       func_ok=`grep "F77_NAME($func)" ${LAPACK_HEADER}`
-      echo "Found $func at ${func_ok}"
+      echo "Found $func from ${func_ok}"
       if test "X${func_ok}" = "X"; then
         QZ_OBJS="${QZ_OBJS} qz/$func.o"
       fi
