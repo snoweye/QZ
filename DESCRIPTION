@@ -14,4 +14,4 @@ Description: QZ package provides generalized eigenvalues and QZ decomposition
         mechanism. The package is mainly based complex*16 and double
         precision of LAPACK library (version 3.4.2.)
 License: Mozilla Public License 2.0
-Packaged: 2013-06-02 18:03:44 UTC; snoweye
+Packaged: 2013-06-03 03:27:58 UTC; snoweye

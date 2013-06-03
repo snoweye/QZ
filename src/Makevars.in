@@ -9,7 +9,7 @@ MkInclude = ${R_HOME}/etc${R_ARCH}/Makeconf
 PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
 
 ### Setup R source code and objects
-OBJECTS = $(QZ_OBJS) $(R_OBJS)
+OBJECTS = @QZ_OBJS@ $(R_OBJS)
 
 ### Start making here.
 all: $(SHLIB)
@@ -18,7 +18,7 @@ $(SHLIB): $(OBJECTS)
 
 clean:
 	@rm -rf *.o *.d *.rc *.so* *.dylib *.dll *.a *.lib \
-	        x*.o z*.o x*.f z*.f \
+                qz/*.o \
                 Makedeps $(SHLIB) $(OBJECTS)
 
 ### All object files.

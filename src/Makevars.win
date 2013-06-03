@@ -18,6 +18,7 @@ $(SHLIB): $(OBJECTS)
 
 clean:
 	@rm -rf *.o *.d *.rc *.so* *.dylib *.dll *.a *.lib \
+                qz/*.o \
                 Makedeps $(SHLIB) $(OBJECTS)
 
 
