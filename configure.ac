@@ -34,13 +34,13 @@ if test "X$Rlapack_ok" = "XNA"; then
 else
   dnl Rlapack is used.
 
-  ### XERBLA is not available.
+  ### XERBLA_ is not available.
   # AC_LANG(Fortran)
   # AC_SEARCH_LIBS([zgeev], [Rlapack], [zgeev_ok=yes], [zgeev_ok=no],
   #                [$LAPACK_LIBS $BLAS_LIBS $FLIBS])
   # AC_CHECK_FUNC([zgeev], [zgeev_ok=yes], [zgeev_ok=no])
 
-  ### F77_CALL is not available.
+  ### F77_CALL() is not available.
   # R_INCLUDE="${R_HOME}/include/"
   # CPPFLAGS="-I${R_INCLUDE}"
   # AC_CHECK_HEADER([R.h])

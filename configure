@@ -559,6 +559,7 @@ LIBOBJS
 QZ_OBJS
 grep_ok
 sed_ok
+echo_ok
 ls_ok
 target_alias
 host_alias
@@ -1651,25 +1652,7 @@ FLIBS=`${R_SCMD} FLIBS`
 BLAS_LIBS=`${R_SCMD} BLAS_LIBS`
 LAPACK_LIBS=`${R_SCMD} LAPACK_LIBS`
 
-if test "X$LAPACK_LIBS" = "X" -o "X$LAPACK_LIBS" = "X-llapack"; then
-    QZ_OBJS=""
-else
-
-  ### XERBLA is not available.
-  # AC_LANG(Fortran)
-  # AC_SEARCH_LIBS([zgeev], [Rlapack], [zgeev_ok=yes], [zgeev_ok=no],
-  #                [$LAPACK_LIBS $BLAS_LIBS $FLIBS])
-  # AC_CHECK_FUNC([zgeev], [zgeev_ok=yes], [zgeev_ok=no])
-
-  ### F77_CALL is not available.
-  # R_INCLUDE="${R_HOME}/include/"
-  # CPPFLAGS="-I${R_INCLUDE}"
-  # AC_CHECK_HEADER([R.h])
-  # AC_CHECK_HEADER([Rinternals.h])
-  # AC_CHECK_HEADER([R_ext/Lapack.h])
-  # AC_CHECK_FUNC([zgeev], [zgeev_ok=yes], [zgeev_ok=no])
-
-  # Extract the first word of "ls", so it can be a program name with args.
+# Extract the first word of "ls", so it can be a program name with args.
 set dummy ls; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 $as_echo_n "checking for $ac_word... " >&6; }
@@ -1707,7 +1690,45 @@ $as_echo "no" >&6; }
 fi
 
 
-  # Extract the first word of "sed", so it can be a program name with args.
+# Extract the first word of "echo", so it can be a program name with args.
+set dummy echo; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_echo_ok+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$echo_ok"; then
+  ac_cv_prog_echo_ok="$echo_ok" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_echo_ok="yes"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_echo_ok" && ac_cv_prog_echo_ok="no"
+fi
+fi
+echo_ok=$ac_cv_prog_echo_ok
+if test -n "$echo_ok"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $echo_ok" >&5
+$as_echo "$echo_ok" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+# Extract the first word of "sed", so it can be a program name with args.
 set dummy sed; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 $as_echo_n "checking for $ac_word... " >&6; }
@@ -1745,7 +1766,7 @@ $as_echo "no" >&6; }
 fi
 
 
-  # Extract the first word of "grep", so it can be a program name with args.
+# Extract the first word of "grep", so it can be a program name with args.
 set dummy grep; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 $as_echo_n "checking for $ac_word... " >&6; }
@@ -1782,6 +1803,31 @@ else
 $as_echo "no" >&6; }
 fi
 
+
+
+if test "X$echo_ok" = "Xyes" -a "X$grep_ok" = "Xyes"; then
+  Rlapack_ok=`echo ${LAPACK_LIBS} | grep "\-lRlapack"`
+else
+  Rlapack_ok="NA"
+fi
+
+if test "X$Rlapack_ok" = "XNA"; then
+    QZ_OBJS=""
+else
+
+  ### XERBLA_ is not available.
+  # AC_LANG(Fortran)
+  # AC_SEARCH_LIBS([zgeev], [Rlapack], [zgeev_ok=yes], [zgeev_ok=no],
+  #                [$LAPACK_LIBS $BLAS_LIBS $FLIBS])
+  # AC_CHECK_FUNC([zgeev], [zgeev_ok=yes], [zgeev_ok=no])
+
+  ### F77_CALL() is not available.
+  # R_INCLUDE="${R_HOME}/include/"
+  # CPPFLAGS="-I${R_INCLUDE}"
+  # AC_CHECK_HEADER([R.h])
+  # AC_CHECK_HEADER([Rinternals.h])
+  # AC_CHECK_HEADER([R_ext/Lapack.h])
+  # AC_CHECK_FUNC([zgeev], [zgeev_ok=yes], [zgeev_ok=no])
 
   if test "X$ls_ok" = "Xyes" -a "X$sed_ok" = "Xyes" -a "X$grep_ok" = "Xyes"; then
     ### Check R_ext/Lapack.h
