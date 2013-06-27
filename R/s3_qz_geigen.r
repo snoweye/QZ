@@ -37,3 +37,5 @@ qz.geigen <- function(A, B = NULL, only.values = FALSE, ...){
 
   ret
 } # End of qz.geigen().
+
+geigen <- qz.geigen

@@ -1,6 +1,6 @@
 \name{fda.geigen}
 \alias{fda.geigen}
-\title{ Generalized Eigen Analysis }
+\title{ Generalized Eigen Analysis as in fda Package}
 \description{
   This is an equivalent function to \code{fda::geigen} which 
   finds matrices L and M to maximize

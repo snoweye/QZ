@@ -1,9 +1,15 @@
+2013-06-24: Ver. 0.1-2
+  * Add ordqz() as the MATLAB function.
+  * Add geigen() as an alias of qz.geigen().
+
 2013-06-03: Ver. 0.1-1
   * Change typos.
   * Drop BLAS functions and part of LAPACK functions.
   * Change Makevars.
   * Change authorship.
   * Add and modify configure.
+  * Link with internal Rblas and Rlapack.
+  * Link with external LAPACK, ACML and MKL.
 
 2013-06-01: Ver. 0.1-0
   * Change Makevars.

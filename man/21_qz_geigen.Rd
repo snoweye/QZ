@@ -1,4 +1,5 @@
-\name{qz.geigen}
+\name{Generalized Eigenvalues}
+\alias{geigen}
 \alias{qz.geigen}
 \title{ Generalized Eigen Values }
 \description{
@@ -6,6 +7,8 @@
   matrices (A,B) or a single matrix A.
 }
 \usage{
+  geigen(A, B = NULL, only.values = FALSE, ...)
+
   qz.geigen(A, B = NULL, only.values = FALSE, ...)
 }
 \arguments{
@@ -33,7 +36,7 @@
   Wei-Chen Chen \email{wccsnow@gmail.com}
 }
 \seealso{
-  \code{\link{qz}}.
+  \code{\link{qz}}, \code{\link{ordqz}}.
 }
 \examples{
 \dontrun{

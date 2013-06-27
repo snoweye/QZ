@@ -59,7 +59,7 @@
 }
 \examples{
 \dontrun{
-demo(ex1_qz_geigen, "QZ")
+demo(ex1_geigen, "QZ")
 demo(ex2_qz, "QZ")
 demo(ex3_ordqz, "QZ")
 demo(ex4_fda_geigen, "QZ")

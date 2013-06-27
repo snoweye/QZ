@@ -4,7 +4,7 @@
 \label{sec:implementation}
 \addcontentsline{toc}{section}{\thesection. Implementation}
 
-Two main functions are \code{qz.geigen()}
+Two main functions are \code{geigen()}
 for generalized eigenvalues, and \code{qz()} for QZ decomposition with
 reordering capability. Both functions are able to deal a single matrix $\bA$
 or a paired matrices $(\bA,\bB)$ in both complex and real systems.
@@ -33,7 +33,7 @@ Function &
 Wrapper          & Main Input        & System & Purpose \\
 \hline
 
-\multirow{2}{*}{\code{qz.geigen()}} &
+\multirow{2}{*}{\code{geigen()}} &
 \code{qz.zgeev}  & $\bA$               & Complex & \multirow{2}{*}{Generalized eigenvalues} \\
 
 &
@@ -54,7 +54,7 @@ Wrapper          & Main Input        & System & Purpose \\
 \code{qz.dtrsen} & $\bT, \bQ$          & Real    & \\
 \hline \hline
 
-\multirow{2}{*}{\code{qz.geigen()}} &
+\multirow{2}{*}{\code{geigen()}} &
 \code{qz.zggev}  & $(\bA,\bB)$         & Complex & \multirow{2}{*}{Generalized eigenvalues} \\
 
 &

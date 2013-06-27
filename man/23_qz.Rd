@@ -1,4 +1,4 @@
-\name{qz}
+\name{QZ Decomposition}
 \alias{qz}
 \title{ QZ Decomposition }
 \description{
@@ -42,7 +42,7 @@
   Wei-Chen Chen \email{wccsnow@gmail.com}
 }
 \seealso{
-  \code{\link{qz.geigen}}.
+  \code{\link{ordqz}}, \code{\link{geigen}}.
 }
 \examples{
 \dontrun{
