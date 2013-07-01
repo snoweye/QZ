@@ -85,7 +85,7 @@ Oak Ridge, TN, USA \\
 \input{./QZ-include/01-introduction}
 \input{./QZ-include/02-method}
 \input{./QZ-include/03-implementation}
-%\input{./QZ-include/04-data_example}
+\input{./QZ-include/04-data_example}
 %\input{./QZ-include/05-conclusion}
 
 \newpage

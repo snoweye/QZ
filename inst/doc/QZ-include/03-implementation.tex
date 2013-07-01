@@ -79,3 +79,26 @@ Wrapper          & Main Input        & System & Purpose \\
 \end{center}
 \end{table}
 
+An extral MATLAB-like function \code{ordqz()} is also available to reordering
+generalized eigenvalues and QZ decomposition results. The function which is
+the combinations of \code{qz()} and \code{qz.ztrsen()/qz.dtrsen()} for
+specified ordering keywords in Table~\ref{tab:ordqz}.
+\begin{table}[h!tb]
+\begin{center}
+\caption{The \code{ordez()} keyword for reording.}
+\label{tab:ordqz}
+\begin{tabular}{c|l} \hline \hline
+\code{keyword} & Purpose \\ \hline
+\code{lhp} & Left-half (real(E) < 0) \\
+\code{rhp} & Right-half (real(E) > 0) \\
+\code{udi} & Interior of unit disk (abs(E) < 1) \\
+\code{udo} & Exterior of unit disk (abs(E) > 1) \\
+\code{ref} & Real eigenvalues first (top-left conner) \\
+\code{cef} & Complex eigenvalues first (top-left conner) \\
+\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+Note that \code{select} argument of \code{qz()} allows users to specify
+any order to group and reorder the decompositions.
+
