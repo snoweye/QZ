@@ -12,5 +12,8 @@
 
 --- Test 'QZ':
 
-     > Rscript -e "demo(ex1_zgges,'QZ',ask=F,echo=F)"
+     > Rscript -e "demo(ex1_geigen,'QZ',ask=F,echo=F)"
+     > Rscript -e "demo(ex2_qz,'QZ',ask=F,echo=F)"
+     > Rscript -e "demo(ex3_ordqz,'QZ',ask=F,echo=F)"
+     > Rscript -e "demo(ex4_fda_geigen,'QZ',ask=F,echo=F)"
 

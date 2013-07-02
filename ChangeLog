@@ -1,6 +1,7 @@
 2013-07-01: Ver. 0.1-3
   * LAPACK license is updated to 3.4.2 in inst/LAPACK_LICENSE.txt and added in
     DESCRIPTION.
+  * Migrate inst/doc/ to inst/doc/vignettes/.
 
 2013-06-24: Ver. 0.1-2
   * Add ordqz() as the MATLAB function.
