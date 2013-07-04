@@ -8,7 +8,7 @@ Depends: R (>= 2.15.0), methods
 Enhances: fda
 LazyLoad: yes
 LazyData: yes
-Copyright: See QZ/inst/LAPACK_LICENSE.txt for the files in src/qz/.
+Copyright: See QZ/inst/LAPACK_LICENSE for the files in src/qz/.
 Description: QZ package provides generalized eigenvalues and QZ decomposition
         (generalized Schur form) for an N-by-N non-symmetric
         matrix A or paired matrices (A,B) with eigenvalues reordering
