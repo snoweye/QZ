@@ -2,7 +2,7 @@ citHeader("To cite QZ in a publication use:")
 
 citEntry(
   entry = "Misc",
-  title = "{QZ}: {QZ} Decomposition",
+  title = "{QZ}: Generalized Eigenvalues and {QZ} Decomposition",
   author = personList(as.person("Wei-Chen Chen")),
   year = "2013",
   note = "{R} Package, URL http://cran.r-project.org/package=QZ",

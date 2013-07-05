@@ -1,6 +1,6 @@
 Package: QZ
-Version: 0.1-4
-Date: 2013-07-03
+Version: 0.1-5
+Date: 2013-07-04
 Title: Generalized Eigenvalues and QZ Decomposition
 Author: Wei-Chen Chen, partly adapted and using routines from LAPACK.
 Maintainer: Wei-Chen Chen <wccsnow@gmail.com>
