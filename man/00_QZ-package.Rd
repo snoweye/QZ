@@ -1,5 +1,6 @@
 \name{QZ-package}
 \alias{QZ-package}
+\alias{QZ}
 \docType{package}
 \title{Generalized Eigenvalues and QZ Decomposition}
 \description{

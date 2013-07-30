@@ -1,3 +1,6 @@
+2013-07-30: Ver. 0.1-5
+  * Add an alias to a man page.
+
 2013-07-03: Ver. 0.1-4
   * Move inst/doc/vignettes/ to vignettes/.
 
