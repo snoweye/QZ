@@ -1,7 +1,7 @@
 QZ is an R package providing QZ decomposition.
 
 QZ requires
-  - R version 2.15.0 or higher.
+  - R version 3.0.1 or higher.
 
 For installing QZ, 
   - see "INSTALL".

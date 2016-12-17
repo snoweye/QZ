@@ -1,18 +1,19 @@
 Package: QZ
 Version: 0.1-5
-Date: 2013-07-30
+Date: 2016-12-17
 Title: Generalized Eigenvalues and QZ Decomposition
 Author: Wei-Chen Chen, partly adapted and using routines from LAPACK.
 Maintainer: Wei-Chen Chen <wccsnow@gmail.com>
-Depends: R (>= 2.15.0), methods
+Depends: R (>= 3.0.1), methods
 Enhances: fda
 LazyLoad: yes
 LazyData: yes
 Copyright: See QZ/inst/LAPACK_LICENSE.txt for the files in src/qz/.
-Description: QZ package provides generalized eigenvalues and QZ decomposition
+Description: Generalized eigenvalues and QZ decomposition
         (generalized Schur form) for an N-by-N non-symmetric
         matrix A or paired matrices (A,B) with eigenvalues reordering
         mechanism. The package is mainly based complex*16 and double
         precision of LAPACK library (version 3.4.2.)
 License: Mozilla Public License 2.0
-Packaged: 2013-07-30 17:06:13 UTC; snoweye
+NeedsCompilation: yes
+Packaged: 2016-12-17 14:31:45 UTC; snoweye
