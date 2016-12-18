@@ -1,3 +1,7 @@
+2016-12-17: Ver. 0.1-5
+  * Change web address.
+  * Change CHARACTER to CHARACTER*1 for the Fortran code.
+
 2013-07-30: Ver. 0.1-5
   * Add an alias to a man page.
 
