@@ -7,7 +7,7 @@
 *  -- April 2011                                                      --
 *
 *     .. Scalar Arguments ..
-      CHARACTER          TRANA, TRANB
+      CHARACTER*1        TRANA, TRANB
       INTEGER            INFO, ISGN, LDA, LDB, LDC, M, N
       DOUBLE PRECISION   SCALE
 *     ..

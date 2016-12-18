@@ -7,7 +7,7 @@
 *     November 2006
 *
 *     .. Scalar Arguments ..
-      CHARACTER          JOBVS, SORT
+      CHARACTER*1        JOBVS, SORT
       INTEGER            INFO, LDA, LDVS, LWORK, N, SDIM
 *     ..
 *     .. Array Arguments ..

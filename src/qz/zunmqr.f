@@ -7,7 +7,7 @@
 *  -- April 2011                                                      --
 *
 *     .. Scalar Arguments ..
-      CHARACTER          SIDE, TRANS
+      CHARACTER*1        SIDE, TRANS
       INTEGER            INFO, K, LDA, LDC, LWORK, M, N
 *     ..
 *     .. Array Arguments ..

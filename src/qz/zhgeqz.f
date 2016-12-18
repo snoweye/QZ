@@ -8,7 +8,7 @@
 *     November 2006
 *
 *     .. Scalar Arguments ..
-      CHARACTER          COMPQ, COMPZ, JOB
+      CHARACTER*1        COMPQ, COMPZ, JOB
       INTEGER            IHI, ILO, INFO, LDH, LDQ, LDT, LDZ, LWORK, N
 *     ..
 *     .. Array Arguments ..

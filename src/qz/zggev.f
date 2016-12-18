@@ -7,7 +7,7 @@
 *     November 2006
 *
 *     .. Scalar Arguments ..
-      CHARACTER          JOBVL, JOBVR
+      CHARACTER*1        JOBVL, JOBVR
       INTEGER            INFO, LDA, LDB, LDVL, LDVR, LWORK, N
 *     ..
 *     .. Array Arguments ..
@@ -141,7 +141,7 @@
 *     ..
 *     .. Local Scalars ..
       LOGICAL            ILASCL, ILBSCL, ILV, ILVL, ILVR, LQUERY
-      CHARACTER          CHTEMP
+      CHARACTER*1        CHTEMP
       INTEGER            ICOLS, IERR, IHI, IJOBVL, IJOBVR, ILEFT, ILO,
      $                   IN, IRIGHT, IROWS, IRWRK, ITAU, IWRK, JC, JR,
      $                   LWKMIN, LWKOPT

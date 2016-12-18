@@ -7,7 +7,7 @@
 *     November 2006
 *
 *     .. Scalar Arguments ..
-      CHARACTER          JOB
+      CHARACTER*1        JOB
       INTEGER            IHI, ILO, INFO, LDA, LDB, N
 *     ..
 *     .. Array Arguments ..

@@ -7,7 +7,7 @@
 *     November 2006
 *
 *     .. Scalar Arguments ..
-      CHARACTER          COMPQ, COMPZ
+      CHARACTER*1        COMPQ, COMPZ
       INTEGER            IHI, ILO, INFO, LDA, LDB, LDQ, LDZ, N
 *     ..
 *     .. Array Arguments ..

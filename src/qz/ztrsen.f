@@ -9,7 +9,7 @@
 *     Modified to call ZLACN2 in place of ZLACON, 10 Feb 03, SJH.
 *
 *     .. Scalar Arguments ..
-      CHARACTER          COMPQ, JOB
+      CHARACTER*1        COMPQ, JOB
       INTEGER            INFO, LDQ, LDT, LWORK, M, N
       DOUBLE PRECISION   S, SEP
 *     ..

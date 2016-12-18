@@ -7,7 +7,7 @@
 *     November 2006
 *
 *     .. Scalar Arguments ..
-      CHARACTER          HOWMNY, SIDE
+      CHARACTER*1        HOWMNY, SIDE
       INTEGER            INFO, LDP, LDS, LDVL, LDVR, M, MM, N
 *     ..
 *     .. Array Arguments ..

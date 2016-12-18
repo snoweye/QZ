@@ -8,7 +8,7 @@
 *  -- April 2011                                                      --
 *
 *     .. Scalar Arguments ..
-      CHARACTER          TRANS
+      CHARACTER*1        TRANS
       INTEGER            IJOB, INFO, LDA, LDB, LDC, LDD, LDE, LDF,
      $                   LWORK, M, N
       DOUBLE PRECISION   DIF, SCALE
