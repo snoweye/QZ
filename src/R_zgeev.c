@@ -9,6 +9,7 @@ SEXP R_zgeev(SEXP JOBVL, SEXP JOBVR, SEXP N,
 		SEXP INFO){
 	int n = INTEGER(N)[0], total_length;
 	SEXP T;
+	const char *C_JOBVL = CHARPT(JOBVL, 0), *C_JOBVR = CHARPT(JOBVR, 0);
 
 	/* Protect R objects. */
 	PROTECT(T = allocMatrix(CPLXSXP, n, n));
@@ -18,7 +19,7 @@ SEXP R_zgeev(SEXP JOBVL, SEXP JOBVR, SEXP N,
 	Memcpy(COMPLEX(T), COMPLEX(A), total_length);
 
 	/* Call Fortran. */
-	F77_CALL(zgeev)(CHARPT(JOBVL, 0), CHARPT(JOBVR, 0),
+	F77_CALL(zgeev)(C_JOBVL, C_JOBVR,
 		INTEGER(N), COMPLEX(T), INTEGER(LDA),
 		COMPLEX(W), COMPLEX(VL), INTEGER(LDVL),
 		COMPLEX(VR), INTEGER(LDVR), COMPLEX(WORK), INTEGER(LWORK),

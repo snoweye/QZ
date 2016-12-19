@@ -8,6 +8,7 @@ SEXP R_ztrsen(SEXP JOB, SEXP COMPQ, SEXP SELECT,
 		SEXP WORK, SEXP LWORK, SEXP INFO){
 	int n = INTEGER(N)[0], total_length;
 	SEXP RET, RET_NAMES, T_OUT, Q_OUT;
+	const char *C_JOB = CHARPT(JOB, 0), *C_COMPQ = CHARPT(COMPQ, 0);
 
 	/* Protect R objects. */
 	PROTECT(RET = allocVector(VECSXP, 2));
@@ -27,7 +28,7 @@ SEXP R_ztrsen(SEXP JOB, SEXP COMPQ, SEXP SELECT,
 	Memcpy(COMPLEX(Q_OUT), COMPLEX(Q), total_length);
 
 	/* Call Fortran. */
-	F77_CALL(ztrsen)(CHARPT(JOB, 0), CHARPT(COMPQ, 0),
+	F77_CALL(ztrsen)(C_JOB, C_COMPQ,
 		INTEGER(SELECT), INTEGER(N),
 		COMPLEX(T_OUT), INTEGER(LDT),
 		COMPLEX(Q_OUT), INTEGER(LDQ),

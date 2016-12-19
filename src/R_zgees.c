@@ -13,6 +13,7 @@ SEXP R_zgees(SEXP JOBVS, SEXP SORT, SEXP SELECT, SEXP N,
 		SEXP INFO){
 	int n = INTEGER(N)[0], total_length;
 	SEXP RET, RET_NAMES, T;
+	const char *C_JOBVS = CHARPT(JOBVS, 0), *C_SORT = CHARPT(SORT, 0);
 
 	/* Protect R objects. */
 	PROTECT(RET = allocVector(VECSXP, 1));
@@ -28,7 +29,7 @@ SEXP R_zgees(SEXP JOBVS, SEXP SORT, SEXP SELECT, SEXP N,
 	Memcpy(COMPLEX(T), COMPLEX(A), total_length);
 
 	/* Call Fortran. */
-	F77_CALL(zgees)(CHARPT(JOBVS, 0), CHARPT(SORT, 0),
+	F77_CALL(zgees)(C_JOBVS, C_SORT,
 		fake_select, INTEGER(N), COMPLEX(T), INTEGER(LDA),
 		INTEGER(SDIM), COMPLEX(W), COMPLEX(VS), INTEGER(LDVS),
 		COMPLEX(WORK), INTEGER(LWORK),

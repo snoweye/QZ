@@ -10,6 +10,7 @@ SEXP R_dggev(SEXP JOBVL, SEXP JOBVR, SEXP N,
 		SEXP INFO){
 	int n = INTEGER(N)[0], total_length;
 	SEXP S, T;
+	const char *C_JOBVL = CHARPT(JOBVL, 0), *C_JOBVR = CHARPT(JOBVR, 0);
 
 	/* Protect R objects. */
 	PROTECT(S = allocMatrix(REALSXP, n, n));
@@ -21,7 +22,7 @@ SEXP R_dggev(SEXP JOBVL, SEXP JOBVR, SEXP N,
 	Memcpy(REAL(T), REAL(B), total_length);
 
 	/* Call Fortran. */
-	F77_CALL(dggev)(CHARPT(JOBVL, 0), CHARPT(JOBVR, 0),
+	F77_CALL(dggev)(C_JOBVL, C_JOBVR,
 		INTEGER(N), REAL(S), INTEGER(LDA),
 		REAL(T), INTEGER(LDB),
 		REAL(ALPHAR), REAL(ALPHAI), REAL(BETA),
