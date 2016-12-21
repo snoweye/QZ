@@ -7,7 +7,7 @@
 *     November 2006
 *
 *     .. Scalar Arguments ..
-      CHARACTER*1        HOWMNY, SIDE
+      CHARACTER          HOWMNY, SIDE
       INTEGER            INFO, LDP, LDS, LDVL, LDVR, M, MM, N
 *     ..
 *     .. Array Arguments ..
@@ -49,12 +49,12 @@
 *  Arguments
 *  =========
 *
-*  SIDE    (input) CHARACTER*1
+*  SIDE    (input) CHARACTER  
 *          = 'R': compute right eigenvectors only;
 *          = 'L': compute left eigenvectors only;
 *          = 'B': compute both right and left eigenvectors.
 *
-*  HOWMNY  (input) CHARACTER*1
+*  HOWMNY  (input) CHARACTER  
 *          = 'A': compute all right and/or left eigenvectors;
 *          = 'B': compute all right and/or left eigenvectors,
 *                 backtransformed by the matrices in VR and/or VL;

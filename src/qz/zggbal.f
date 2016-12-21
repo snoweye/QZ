@@ -7,7 +7,7 @@
 *     November 2006
 *
 *     .. Scalar Arguments ..
-      CHARACTER*1        JOB
+      CHARACTER          JOB
       INTEGER            IHI, ILO, INFO, LDA, LDB, N
 *     ..
 *     .. Array Arguments ..
@@ -32,7 +32,7 @@
 *  Arguments
 *  =========
 *
-*  JOB     (input) CHARACTER*1
+*  JOB     (input) CHARACTER  
 *          Specifies the operations to be performed on A and B:
 *          = 'N':  none:  simply set ILO = 1, IHI = N, LSCALE(I) = 1.0
 *                  and RSCALE(I) = 1.0 for i=1,...,N;

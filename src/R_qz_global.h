@@ -36,7 +36,8 @@ extern void F77_NAME(ztrsen)(const char *JOB, const char *COMPQ, int *SELECT,
 
 
 /* Complex paired matrices (A,B). */
-extern void F77_NAME(zgges)(const char *JOBVSL, const char *JOBVSR, const char *SORT,
+extern void F77_NAME(zgges)(const char *JOBVSL, const char *JOBVSR,
+	const char *SORT,
 	int (*SELCTG)(Rcomplex*, Rcomplex*), /* function pointer */
 	int *N, Rcomplex *A, int *LDA, Rcomplex *B, int *LDB,
 	int *SDIM, Rcomplex *ALPHA, Rcomplex *BETA,
@@ -82,7 +83,8 @@ extern void F77_NAME(dtrsen)(const char *JOB, const char *COMPQ, int *SELECT,
 
 
 /* Double paired matrices (A,B). */
-extern void F77_NAME(dgges)(const char *JOBVSL, const char *JOBVSR, const char *SORT,
+extern void F77_NAME(dgges)(const char *JOBVSL, const char *JOBVSR,
+	const char *SORT,
 	int (*SELCTG)(double*, double*, double*), /* function pointer */
 	int *N, double *A, int *LDA, double *B, int *LDB,
 	int *SDIM, double *ALPHAR, double *ALPHAI, double *BETA,

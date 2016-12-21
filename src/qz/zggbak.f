@@ -7,7 +7,7 @@
 *     November 2006
 *
 *     .. Scalar Arguments ..
-      CHARACTER*1        JOB, SIDE
+      CHARACTER          JOB, SIDE
       INTEGER            IHI, ILO, INFO, LDV, M, N
 *     ..
 *     .. Array Arguments ..
@@ -26,7 +26,7 @@
 *  Arguments
 *  =========
 *
-*  JOB     (input) CHARACTER*1
+*  JOB     (input) CHARACTER  
 *          Specifies the type of backward transformation required:
 *          = 'N':  do nothing, return immediately;
 *          = 'P':  do backward transformation for permutation only;
@@ -35,7 +35,7 @@
 *                  scaling.
 *          JOB must be the same as the argument JOB supplied to ZGGBAL.
 *
-*  SIDE    (input) CHARACTER*1
+*  SIDE    (input) CHARACTER  
 *          = 'R':  V contains right eigenvectors;
 *          = 'L':  V contains left eigenvectors.
 *

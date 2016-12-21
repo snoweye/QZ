@@ -9,7 +9,7 @@
 *     Modified to call ZLACN2 in place of ZLACON, 10 Feb 03, SJH.
 *
 *     .. Scalar Arguments ..
-      CHARACTER*1        COMPQ, JOB
+      CHARACTER          COMPQ, JOB
       INTEGER            INFO, LDQ, LDT, LWORK, M, N
       DOUBLE PRECISION   S, SEP
 *     ..
@@ -33,7 +33,7 @@
 *  Arguments
 *  =========
 *
-*  JOB     (input) CHARACTER*1
+*  JOB     (input) CHARACTER  
 *          Specifies whether condition numbers are required for the
 *          cluster of eigenvalues (S) or the invariant subspace (SEP):
 *          = 'N': none;
@@ -42,7 +42,7 @@
 *          = 'B': for both eigenvalues and invariant subspace (S and
 *                 SEP).
 *
-*  COMPQ   (input) CHARACTER*1
+*  COMPQ   (input) CHARACTER  
 *          = 'V': update the matrix Q of Schur vectors;
 *          = 'N': do not update Q.
 *

@@ -7,7 +7,7 @@
 *     November 2006
 *
 *     .. Scalar Arguments ..
-      CHARACTER*1        SIDE, TRANS
+      CHARACTER          SIDE, TRANS
       INTEGER            IHI, ILO, INFO, LDA, LDC, LWORK, M, N
 *     ..
 *     .. Array Arguments ..
@@ -32,11 +32,11 @@
 *  Arguments
 *  =========
 *
-*  SIDE    (input) CHARACTER*1
+*  SIDE    (input) CHARACTER  
 *          = 'L': apply Q or Q**H from the Left;
 *          = 'R': apply Q or Q**H from the Right.
 *
-*  TRANS   (input) CHARACTER*1
+*  TRANS   (input) CHARACTER  
 *          = 'N': apply Q  (No transpose)
 *          = 'C': apply Q**H (Conjugate transpose)
 *

@@ -7,7 +7,7 @@
 *     November 2006
 *
 *     .. Scalar Arguments ..
-      CHARACTER*1        COMPQ, COMPZ
+      CHARACTER          COMPQ, COMPZ
       INTEGER            IHI, ILO, INFO, LDA, LDB, LDQ, LDZ, N
 *     ..
 *     .. Array Arguments ..
@@ -47,14 +47,14 @@
 *  Arguments
 *  =========
 *
-*  COMPQ   (input) CHARACTER*1
+*  COMPQ   (input) CHARACTER  
 *          = 'N': do not compute Q;
 *          = 'I': Q is initialized to the unit matrix, and the
 *                 unitary matrix Q is returned;
 *          = 'V': Q must contain a unitary matrix Q1 on entry,
 *                 and the product Q1*Q is returned.
 *
-*  COMPZ   (input) CHARACTER*1
+*  COMPZ   (input) CHARACTER  
 *          = 'N': do not compute Q;
 *          = 'I': Q is initialized to the unit matrix, and the
 *                 unitary matrix Q is returned;

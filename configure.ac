@@ -1,6 +1,9 @@
 dnl Process this file with autoconf to produce a configure script
 AC_INIT(DESCRIPTION)
 
+dnl Check chmod
+chmod +x ./inst/ex_verify/run_all.sh
+
 dnl Determine R_HOME.
 : ${R_HOME=‘R RHOME‘}
 echo ${R_HOME}

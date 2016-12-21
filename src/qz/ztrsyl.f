@@ -7,7 +7,7 @@
 *  -- April 2011                                                      --
 *
 *     .. Scalar Arguments ..
-      CHARACTER*1        TRANA, TRANB
+      CHARACTER          TRANA, TRANB
       INTEGER            INFO, ISGN, LDA, LDB, LDC, M, N
       DOUBLE PRECISION   SCALE
 *     ..
@@ -31,12 +31,12 @@
 *  Arguments
 *  =========
 *
-*  TRANA   (input) CHARACTER*1
+*  TRANA   (input) CHARACTER  
 *          Specifies the option op(A):
 *          = 'N': op(A) = A    (No transpose)
 *          = 'C': op(A) = A**H (Conjugate transpose)
 *
-*  TRANB   (input) CHARACTER*1
+*  TRANB   (input) CHARACTER  
 *          Specifies the option op(B):
 *          = 'N': op(B) = B    (No transpose)
 *          = 'C': op(B) = B**H (Conjugate transpose)

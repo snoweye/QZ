@@ -8,7 +8,7 @@
 *  -- April 2011                                                      --
 *
 *     .. Scalar Arguments ..
-      CHARACTER*1        TRANS
+      CHARACTER          TRANS
       INTEGER            IJOB, INFO, LDA, LDB, LDC, LDD, LDE, LDF,
      $                   LWORK, M, N
       DOUBLE PRECISION   DIF, SCALE
@@ -65,7 +65,7 @@
 *  Arguments
 *  =========
 *
-*  TRANS   (input) CHARACTER*1
+*  TRANS   (input) CHARACTER  
 *          = 'N': solve the generalized sylvester equation (1).
 *          = 'C': solve the "conjugate transposed" system (3).
 *

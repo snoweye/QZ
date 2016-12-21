@@ -7,7 +7,7 @@
 *     November 2006
 *
 *     .. Scalar Arguments ..
-      CHARACTER*1        JOBVL, JOBVR
+      CHARACTER          JOBVL, JOBVR
       INTEGER            INFO, LDA, LDB, LDVL, LDVR, LWORK, N
 *     ..
 *     .. Array Arguments ..
@@ -45,11 +45,11 @@
 *  Arguments
 *  =========
 *
-*  JOBVL   (input) CHARACTER*1
+*  JOBVL   (input) CHARACTER  
 *          = 'N':  do not compute the left generalized eigenvectors;
 *          = 'V':  compute the left generalized eigenvectors.
 *
-*  JOBVR   (input) CHARACTER*1
+*  JOBVR   (input) CHARACTER  
 *          = 'N':  do not compute the right generalized eigenvectors;
 *          = 'V':  compute the right generalized eigenvectors.
 *
@@ -141,7 +141,7 @@
 *     ..
 *     .. Local Scalars ..
       LOGICAL            ILASCL, ILBSCL, ILV, ILVL, ILVR, LQUERY
-      CHARACTER*1        CHTEMP
+      CHARACTER          CHTEMP
       INTEGER            ICOLS, IERR, IHI, IJOBVL, IJOBVR, ILEFT, ILO,
      $                   IN, IRIGHT, IROWS, IRWRK, ITAU, IWRK, JC, JR,
      $                   LWKMIN, LWKOPT

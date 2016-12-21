@@ -8,7 +8,7 @@
 *  -- April 2011                                                      --
 *
 *     .. Scalar Arguments ..
-      CHARACTER*1        TRANS
+      CHARACTER          TRANS
       INTEGER            IJOB, INFO, LDA, LDB, LDC, LDD, LDE, LDF, M, N
       DOUBLE PRECISION   RDSCAL, RDSUM, SCALE
 *     ..
@@ -59,7 +59,7 @@
 *  Arguments
 *  =========
 *
-*  TRANS   (input) CHARACTER*1
+*  TRANS   (input) CHARACTER  
 *          = 'N', solve the generalized Sylvester equation (1).
 *          = 'T': solve the 'transposed' system (3).
 *
