@@ -16,3 +16,4 @@ Description: Generalized eigenvalues and QZ decomposition
         precision of LAPACK library (version 3.4.2.)
 License: Mozilla Public License 2.0
 NeedsCompilation: yes
+Packaged: 2017-04-22 21:09:50 UTC; snoweye
