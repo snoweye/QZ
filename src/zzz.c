@@ -23,6 +23,6 @@ static const R_CallMethodDef callMethods[] = {
 /* End of the callMethods[]. */
 
 void R_init_QZ(DllInfo *info){
-	R_registerRoutines(info, NULL, NULL, callMethods, NULL);
+	R_registerRoutines(info, NULL, callMethods, NULL, NULL);
 	R_useDynamicSymbols(info, TRUE);
 } /* End of R_init_QZ(). */
