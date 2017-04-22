@@ -35,7 +35,8 @@ R_zgeev.o \
 R_zgges.o \
 R_zggev.o \
 R_ztgsen.o \
-R_ztrsen.o
+R_ztrsen.o \
+zzz.o
 
 QZ_OBJS= \
 qz/xerbla.o \
