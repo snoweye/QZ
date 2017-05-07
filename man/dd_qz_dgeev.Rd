@@ -75,7 +75,7 @@
   \code{\link{qz.dgees}}
 }
 \examples{
-\dontrun{
+% \dontrun{
 library(QZ, quiet = TRUE)
 
 ### http://www.nag.com/lapack-ex/node87.html
@@ -91,7 +91,7 @@ round(diff.L)
 # Verify 2
 round(ret$U \%*\% solve(ret$U))
 round(ret$V \%*\% solve(ret$V))
-}
+% }
 }
 \keyword{utility}
 

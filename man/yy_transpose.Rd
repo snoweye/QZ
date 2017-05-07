@@ -20,7 +20,7 @@
   Wei-Chen Chen \email{wccsnow@gmail.com}
 }
 \examples{
-\dontrun{
+% \dontrun{
 library(QZ, quiet = TRUE)
 
 A <- matrix(c(-21.10 -22.50i, 53.50 -50.50i, -34.50 +127.50i,   7.50  +0.50i,
@@ -29,6 +29,6 @@ A <- matrix(c(-21.10 -22.50i, 53.50 -50.50i, -34.50 +127.50i,   7.50  +0.50i,
                 5.50  +4.40i, 14.40 +43.30i, -32.50  -46.00i, -19.00 -32.50i),
             nrow = 4, byrow = T)
 H(A)
-}
+% }
 }
 \keyword{programming}

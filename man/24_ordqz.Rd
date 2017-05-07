@@ -49,7 +49,7 @@
   \code{\link{qz}}, \code{\link{geigen}}.
 }
 \examples{
-\dontrun{
+% \dontrun{
 library(QZ, quiet = TRUE)
 
 # Reordering eigenvalues
@@ -60,7 +60,7 @@ library(QZ, quiet = TRUE)
 (ret <- ordqz(exAB1$A, exAB1$B, keyword = "ref"))
 (ret <- ordqz(exAB1$A, exAB1$B, keyword = "cef"))
 
-}
+% }
 }
 \keyword{programming}
 

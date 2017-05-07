@@ -75,7 +75,7 @@
   \code{\link{qz.zgees}}, \code{\link{qz.dgees}}, \code{\link{qz.ztrsen}}.
 }
 \examples{
-\dontrun{
+% \dontrun{
 library(QZ, quiet = TRUE)
 
 ### http://www.nag.com/numeric/fl/nagdoc_fl22/xhtml/F08/f08qgf.xml
@@ -91,7 +91,7 @@ round(A - A.new)
 
 # verify 2
 round(ret$Q \%*\% t(ret$Q))
-}
+% }
 }
 \keyword{utility}
 

@@ -39,7 +39,7 @@
   \code{\link{qz}}, \code{\link{ordqz}}.
 }
 \examples{
-\dontrun{
+% \dontrun{
 library(QZ, quiet = TRUE)
 
 ### http://www.nag.com/lapack-ex/node122.html
@@ -53,7 +53,7 @@ library(QZ, quiet = TRUE)
 
 ### http://www.nag.com/lapack-ex/node87.html
 (ret <- qz.geigen(exA2$A))
-}
+% }
 }
 \keyword{programming}
 

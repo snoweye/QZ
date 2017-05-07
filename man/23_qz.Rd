@@ -45,7 +45,7 @@
   \code{\link{ordqz}}, \code{\link{geigen}}.
 }
 \examples{
-\dontrun{
+% \dontrun{
 library(QZ, quiet = TRUE)
 
 ### http://www.nag.com/lapack-ex/node124.html
@@ -67,7 +67,7 @@ select2 <- c(FALSE, TRUE, TRUE, FALSE)
 (ret <- qz(exAB2$A, exAB2$B, select = select2))
 (ret <- qz(exA1$A, select = select1))
 (ret <- qz(exA2$A, select = select1))
-}
+% }
 }
 \keyword{programming}
 

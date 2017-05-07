@@ -44,7 +44,7 @@
   \code{\link{qz.geigen}}, \code{\link{qz.dggev}}.
 }
 \examples{
-\dontrun{
+% \dontrun{
 library(QZ, quiet = TRUE)
 
 A <- matrix(as.double(1:6), 2)
@@ -54,8 +54,9 @@ C <- diag(as.double(1:3))
 ret.qz <- fda.geigen(A, B, C)
 
 ### Verify
+library(fda, quiet = TRUE)
 ret.fda <- fda::geigen(A, B, C)
-}
+% }
 }
 \keyword{programming}
 
