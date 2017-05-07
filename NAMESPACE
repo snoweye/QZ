@@ -1,5 +1,6 @@
 useDynLib(QZ)
 import(methods)
+import(Matrix)
 
 ### S3 functions
 exportPattern("^qz\\.[[:alpha:]]+")

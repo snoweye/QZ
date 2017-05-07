@@ -4,8 +4,8 @@ Date: 2017-04-22
 Title: Generalized Eigenvalues and QZ Decomposition
 Authors@R: c(person("Wei-Chen", "Chen", role = c("aut", "cre"), email=
     "wccsnow@gmail.com"), person("LAPACK authors", role = c("aut", "cph")))
-Depends: R (>= 3.0.1), methods
-Enhances: fda
+Depends: R (>= 3.0.1), methods, Matrix
+Suggests: fda
 LazyLoad: yes
 LazyData: yes
 Copyright: See QZ/inst/LAPACK_LICENSE.txt for the files in src/qz/.
