@@ -15,6 +15,7 @@ SEXP R_dgees(SEXP JOBVS, SEXP SORT, SEXP SELECT, SEXP N,
 	int n = INTEGER(N)[0], total_length;
 	SEXP RET, RET_NAMES, T;
 	char CS_JOBVS = CHARPT(JOBVS, 0)[0], CS_SORT = CHARPT(SORT, 0)[0];
+	int CF_wrap;
 
 	/* Protect R objects. */
 	PROTECT(RET = allocVector(VECSXP, 1));
@@ -31,20 +32,17 @@ SEXP R_dgees(SEXP JOBVS, SEXP SORT, SEXP SELECT, SEXP N,
 
 	/* Call Fortran. */
 	if(CS_JOBVS == 'V' && CS_SORT == 'N'){
-		F77_CALL(dgees)("V", "N",
-			fake_select, INTEGER(N), REAL(T), INTEGER(LDA),
-			INTEGER(SDIM),
-			REAL(WR), REAL(WI), REAL(VS), INTEGER(LDVS), REAL(WORK),
-			INTEGER(LWORK), INTEGER(BWORK), INTEGER(INFO));
+		CF_wrap = 0;
 	} else if(CS_JOBVS == 'N' && CS_SORT == 'N'){
-		F77_CALL(dgees)("N", "N",
-			fake_select, INTEGER(N), REAL(T), INTEGER(LDA),
-			INTEGER(SDIM),
-			REAL(WR), REAL(WI), REAL(VS), INTEGER(LDVS), REAL(WORK),
-			INTEGER(LWORK), INTEGER(BWORK), INTEGER(INFO));
+		CF_wrap = 1;
 	} else{
 		REprintf("Input (CHARACTER) types are not implemented.\n");
 	}
+	F77_CALL(wdgees)(&CF_wrap,
+		fake_select, INTEGER(N), REAL(T), INTEGER(LDA),
+		INTEGER(SDIM),
+		REAL(WR), REAL(WI), REAL(VS), INTEGER(LDVS), REAL(WORK),
+		INTEGER(LWORK), INTEGER(BWORK), INTEGER(INFO));
 
 	/* Return. */
 	UNPROTECT(3);

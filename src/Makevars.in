@@ -9,7 +9,7 @@ MkInclude = ${R_HOME}/etc${R_ARCH}/Makeconf
 PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
 
 ### Setup R source code and objects
-OBJECTS = @QZ_OBJS@ $(R_OBJS)
+OBJECTS = @QZ_OBJS@ $(W_OBJS) $(R_OBJS)
 
 ### Start making here.
 all: $(SHLIB)
@@ -36,6 +36,18 @@ R_zggev.o \
 R_ztgsen.o \
 R_ztrsen.o \
 zzz.o
+
+W_OBJS= \
+wdgees.o \
+wdgeev.o \
+wdgges.o \
+wdggev.o \
+wdtrsen.o \
+wzgees.o \
+wzgeev.o \
+wzgges.o \
+wzggev.o \
+wztrsen.o
 
 QZ_OBJS= \
 qz/xerbla.o \

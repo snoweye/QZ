@@ -15,7 +15,7 @@ extern "C" {
 #endif
 
 /* Complex matrix A. */
-extern void F77_NAME(zgees)(const char *JOBVS, const char *SORT,
+extern void F77_NAME(wzgees)(int *CF_wrap,
 	int (*SELECT)(Rcomplex*), /* function pointer */
 	int *N, Rcomplex *A, int *LDA,
 	int *SDIM, Rcomplex *W,
@@ -23,21 +23,20 @@ extern void F77_NAME(zgees)(const char *JOBVS, const char *SORT,
 	Rcomplex *WORK, int *LWORK, double *RWORK,
 	int *BWORK, /* logical */
 	int *INFO);
-extern void F77_NAME(zgeev)(const char *JOBVL, const char *JOBVR,
+extern void F77_NAME(wzgeev)(int *CF_wrap,
 	int *N, Rcomplex *A, int *LDA,
 	Rcomplex *W,
 	Rcomplex *VL, int *LDVL, Rcomplex *VR, int *LDVR,
 	Rcomplex *WORK, int *LWORK, double *RWORK,
 	int *INFO);
-extern void F77_NAME(ztrsen)(const char *JOB, const char *COMPQ, int *SELECT,
+extern void F77_NAME(wztrsen)(int *CF_wrap, int *SELECT,
 	int *N, Rcomplex *T, int *LDT,
 	Rcomplex *Q, int *LDQ, Rcomplex *W, int *M, double *S,
 	double *SEP, Rcomplex *WORK, int *LWORK, int *INFO);
 
 
 /* Complex paired matrices (A,B). */
-extern void F77_NAME(zgges)(const char *JOBVSL, const char *JOBVSR,
-	const char *SORT,
+extern void F77_NAME(wzgges)(int *CF_wrap,
 	int (*SELCTG)(Rcomplex*, Rcomplex*), /* function pointer */
 	int *N, Rcomplex *A, int *LDA, Rcomplex *B, int *LDB,
 	int *SDIM, Rcomplex *ALPHA, Rcomplex *BETA,
@@ -45,7 +44,7 @@ extern void F77_NAME(zgges)(const char *JOBVSL, const char *JOBVSR,
 	Rcomplex *WORK, int *LWORK, double *RWORK,
 	int *BWORK, /* logical */
 	int *INFO);
-extern void F77_NAME(zggev)(const char *JOBVL, const char *JOBVR,
+extern void F77_NAME(wzggev)(int *CF_wrap,
 	int *N, Rcomplex *A, int *LDA, Rcomplex *B, int *LDB,
 	Rcomplex *ALPHA, Rcomplex *BETA,
 	Rcomplex *VL, int *LDVL, Rcomplex *VR, int *LDVR,
@@ -60,7 +59,7 @@ extern void F77_NAME(ztgsen)(int *IJOB, int *WANTQ, int *WANTZ, int *SELECT,
 
 
 /* Double matrix A. */
-extern void F77_NAME(dgees)(const char *JOBVS, const char *SORT,
+extern void F77_NAME(wdgees)(int *CF_wrap,
 	int (*SELECT)(double*, double*), /* function pointer */
 	int *N, double *A, int *LDA,
 	int *SDIM, double *WR, double *WI,
@@ -68,13 +67,13 @@ extern void F77_NAME(dgees)(const char *JOBVS, const char *SORT,
 	double *WORK, int *LWORK,
 	int *BWORK, /* logical */
 	int *INFO);
-extern void F77_NAME(dgeev)(const char *JOBVL, const char *JOBVR,
+extern void F77_NAME(wdgeev)(int *CF_wrap,
 	int *N, double *A, int *LDA,
 	double *WR, double *WI,
 	double *VL, int *LDVL, double *VR, int *LDVR,
 	double *WORK, int *LWORK,
 	int *INFO);
-extern void F77_NAME(dtrsen)(const char *JOB, const char *COMPQ, int *SELECT,
+extern void F77_NAME(wdtrsen)(int *CF_wrap, int *SELECT,
 	int *N, double *T, int *LDT,
 	double *Q, int *LDQ,
 	double *WR, double *WI,
@@ -83,8 +82,7 @@ extern void F77_NAME(dtrsen)(const char *JOB, const char *COMPQ, int *SELECT,
 
 
 /* Double paired matrices (A,B). */
-extern void F77_NAME(dgges)(const char *JOBVSL, const char *JOBVSR,
-	const char *SORT,
+extern void F77_NAME(wdgges)(int *CF_wrap,
 	int (*SELCTG)(double*, double*, double*), /* function pointer */
 	int *N, double *A, int *LDA, double *B, int *LDB,
 	int *SDIM, double *ALPHAR, double *ALPHAI, double *BETA,
@@ -92,7 +90,7 @@ extern void F77_NAME(dgges)(const char *JOBVSL, const char *JOBVSR,
 	double *WORK, int *LWORK,
 	int *BWORK, /* logical */
 	int *INFO);
-extern void F77_NAME(dggev)(const char *JOBVL, const char *JOBVR,
+extern void F77_NAME(wdggev)(int *CF_wrap,
 	int *N, double *A, int *LDA, double *B, int *LDB,
 	double *ALPHAR, double *ALPHAI, double *BETA,
 	double *VL, int *LDVL, double *VR, int *LDVR,

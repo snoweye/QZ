@@ -9,6 +9,7 @@ SEXP R_ztrsen(SEXP JOB, SEXP COMPQ, SEXP SELECT,
 	int n = INTEGER(N)[0], total_length;
 	SEXP RET, RET_NAMES, T_OUT, Q_OUT;
 	char CS_JOB = CHARPT(JOB, 0)[0], CS_COMPQ = CHARPT(COMPQ, 0)[0];
+	int CF_wrap;
 
 	/* Protect R objects. */
 	PROTECT(RET = allocVector(VECSXP, 2));
@@ -29,64 +30,30 @@ SEXP R_ztrsen(SEXP JOB, SEXP COMPQ, SEXP SELECT,
 
 	/* Call Fortran. */
 	if(CS_JOB == 'B' && CS_COMPQ == 'V'){
-		F77_CALL(ztrsen)("B", "V",
-			INTEGER(SELECT), INTEGER(N),
-			COMPLEX(T_OUT), INTEGER(LDT),
-			COMPLEX(Q_OUT), INTEGER(LDQ),
-			COMPLEX(W), INTEGER(M), REAL(S), REAL(SEP),
-			COMPLEX(WORK), INTEGER(LWORK), INTEGER(INFO));
-	} else if(CS_JOB == 'V' && CS_COMPQ == 'V'){
-		F77_CALL(ztrsen)("V", "V",
-			INTEGER(SELECT), INTEGER(N),
-			COMPLEX(T_OUT), INTEGER(LDT),
-			COMPLEX(Q_OUT), INTEGER(LDQ),
-			COMPLEX(W), INTEGER(M), REAL(S), REAL(SEP),
-			COMPLEX(WORK), INTEGER(LWORK), INTEGER(INFO));
-	} else if(CS_JOB == 'E' && CS_COMPQ == 'V'){
-		F77_CALL(ztrsen)("E", "V",
-			INTEGER(SELECT), INTEGER(N),
-			COMPLEX(T_OUT), INTEGER(LDT),
-			COMPLEX(Q_OUT), INTEGER(LDQ),
-			COMPLEX(W), INTEGER(M), REAL(S), REAL(SEP),
-			COMPLEX(WORK), INTEGER(LWORK), INTEGER(INFO));
-	} else if(CS_JOB == 'N' && CS_COMPQ == 'V'){
-		F77_CALL(ztrsen)("N", "V",
-			INTEGER(SELECT), INTEGER(N),
-			COMPLEX(T_OUT), INTEGER(LDT),
-			COMPLEX(Q_OUT), INTEGER(LDQ),
-			COMPLEX(W), INTEGER(M), REAL(S), REAL(SEP),
-			COMPLEX(WORK), INTEGER(LWORK), INTEGER(INFO));
-	} else if(CS_JOB == 'B' && CS_COMPQ == 'N'){
-		F77_CALL(ztrsen)("B", "N",
-			INTEGER(SELECT), INTEGER(N),
-			COMPLEX(T_OUT), INTEGER(LDT),
-			COMPLEX(Q_OUT), INTEGER(LDQ),
-			COMPLEX(W), INTEGER(M), REAL(S), REAL(SEP),
-			COMPLEX(WORK), INTEGER(LWORK), INTEGER(INFO));
-	} else if(CS_JOB == 'V' && CS_COMPQ == 'N'){
-		F77_CALL(ztrsen)("V", "N",
-			INTEGER(SELECT), INTEGER(N),
-			COMPLEX(T_OUT), INTEGER(LDT),
-			COMPLEX(Q_OUT), INTEGER(LDQ),
-			COMPLEX(W), INTEGER(M), REAL(S), REAL(SEP),
-			COMPLEX(WORK), INTEGER(LWORK), INTEGER(INFO));
-	} else if(CS_JOB == 'E' && CS_COMPQ == 'N'){
-		F77_CALL(ztrsen)("E", "N",
-			INTEGER(SELECT), INTEGER(N),
-			COMPLEX(T_OUT), INTEGER(LDT),
-			COMPLEX(Q_OUT), INTEGER(LDQ),
-			COMPLEX(W), INTEGER(M), REAL(S), REAL(SEP),
-			COMPLEX(WORK), INTEGER(LWORK), INTEGER(INFO));
-	} else if(CS_JOB == 'N' && CS_COMPQ == 'N'){
-		F77_CALL(ztrsen)("N", "N",
-			INTEGER(SELECT), INTEGER(N),
-			COMPLEX(T_OUT), INTEGER(LDT),
-			COMPLEX(Q_OUT), INTEGER(LDQ),
-			COMPLEX(W), INTEGER(M), REAL(S), REAL(SEP),
-			COMPLEX(WORK), INTEGER(LWORK), INTEGER(INFO));
+		CF_wrap = 0;
+	} else if (CS_JOB == 'V' && CS_COMPQ == 'V'){
+		CF_wrap = 1;
+	} else if (CS_JOB == 'E' && CS_COMPQ == 'V'){
+		CF_wrap = 2;
+	} else if (CS_JOB == 'N' && CS_COMPQ == 'V'){
+		CF_wrap = 3;
+	} else if (CS_JOB == 'B' && CS_COMPQ == 'N'){
+		CF_wrap = 4;
+	} else if (CS_JOB == 'V' && CS_COMPQ == 'N'){
+		CF_wrap = 5;
+	} else if (CS_JOB == 'E' && CS_COMPQ == 'N'){
+		CF_wrap = 6;
+	} else if (CS_JOB == 'N' && CS_COMPQ == 'N'){
+		CF_wrap = 7;
 	} else{
 		REprintf("Input (CHARACTER) types are not implemented.\n");
 	}
+	F77_CALL(wztrsen)(&CF_wrap,
+		INTEGER(SELECT), INTEGER(N),
+		COMPLEX(T_OUT), INTEGER(LDT),
+		COMPLEX(Q_OUT), INTEGER(LDQ),
+		COMPLEX(W), INTEGER(M), REAL(S), REAL(SEP),
+		COMPLEX(WORK), INTEGER(LWORK), INTEGER(INFO));
 
 	/* Return. */
 	UNPROTECT(4);

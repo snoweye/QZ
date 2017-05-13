@@ -1,6 +1,6 @@
 Package: QZ
 Version: 0.1-6
-Date: 2017-04-22
+Date: 2017-05-13
 Title: Generalized Eigenvalues and QZ Decomposition
 Authors@R: c(person("Wei-Chen", "Chen", role = c("aut", "cre"), email=
     "wccsnow@gmail.com"), person("LAPACK authors", role = c("aut", "cph")))
