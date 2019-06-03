@@ -29,7 +29,7 @@ SEXP R_dtgsen(SEXP IJOB, SEXP WANTQ, SEXP WANTZ, SEXP SELECT,
 	SET_STRING_ELT(RET_NAMES, 3, mkChar("Z")); 
 	setAttrib(RET, R_NamesSymbol, RET_NAMES);
 
-	/* COpy A and B since dtgsen writes in place. */
+	/* Copy A and B since dtgsen writes in place. */
 	total_length = n * n;
 	Memcpy(REAL(S_OUT), REAL(S), total_length);
 	Memcpy(REAL(T_OUT), REAL(T), total_length);

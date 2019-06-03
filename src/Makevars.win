@@ -50,11 +50,11 @@ wzgges.o \
 wzggev.o \
 wztrsen.o
 
-QZ_OBJS= \
+QZ_OBJS= 
+
+QZ_OBJS_ORG= \
 qz/xerbla.o \
 qz/zgees.o \
-qz/zgerc.o \
-qz/zgeru.o \
 qz/zgesc2.o \
 qz/zgetc2.o \
 qz/zggbak.o \

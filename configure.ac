@@ -59,19 +59,32 @@ else
   # AC_CHECK_FUNC([zgeev], [zgeev_ok=yes], [zgeev_ok=no])
 
   if test "X$ls_ok" = "Xyes" -a "X$sed_ok" = "Xyes" -a "X$grep_ok" = "Xyes"; then
-    ### Check R_ext/Lapack.h
-    LAPACK_HEADER="${R_HOME}/include/R_ext/Lapack.h"
-
-    funcs=`ls src/qz/*.f | sed -e "s/.*\/\(.*\)\.f/\\1/"`
     QZ_OBJS=""
-    for func in ${funcs}
-    do
-      func_ok=`grep "F77_NAME($func)" ${LAPACK_HEADER}`
-      echo "Found $func from ${func_ok}"
-      if test "X${func_ok}" = "X"; then
-        QZ_OBJS="${QZ_OBJS} qz/$func.o"
-      fi
-    done
+    # funcs=`ls src/qz/*.f | sed -e "s/.*\/\(.*\)\.f/\\1/"`
+
+    ### Check R_ext/Lapack.h
+    # LAPACK_HEADER="${R_HOME}/include/R_ext/Lapack.h"
+    # echo "LAPACK_HEADER=${LAPACK_HEADER}"
+    # for func in ${funcs}
+    # do
+    #   func_ok=`grep "F77_NAME($func)" ${LAPACK_HEADER}`
+    #   echo "Found $func from ${func_ok}"
+    #   if test "X${func_ok}" = "X"; then
+    #     QZ_OBJS="${QZ_OBJS} qz/$func.o"
+    #   fi
+    # done
+
+    ### Check lib/libRlapack.so using nm
+    # RLAPACK_LIB="${R_HOME}/lib${R_ARCH}/libRlapack.*"
+    # echo "RLAPACK_LIB=${RLAPACK_LIB}"
+    # for func in ${funcs}
+    # do
+    #   func_ok=`nm ${RLAPACK_LIB} | grep " T $func"`
+    #   echo "Found $func from ${func_ok}"
+    #   if test "X${func_ok}" = "X"; then
+    #     QZ_OBJS="${QZ_OBJS} qz/$func.o"
+    #   fi
+    # done
   else
     ### Use default if all above fail. 
     QZ_OBJS="\$(QZ_OBJS)"

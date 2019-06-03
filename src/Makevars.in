@@ -52,8 +52,6 @@ wztrsen.o
 QZ_OBJS= \
 qz/xerbla.o \
 qz/zgees.o \
-qz/zgerc.o \
-qz/zgeru.o \
 qz/zgesc2.o \
 qz/zgetc2.o \
 qz/zggbak.o \

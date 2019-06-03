@@ -608,6 +608,7 @@ infodir
 docdir
 oldincludedir
 includedir
+runstatedir
 localstatedir
 sharedstatedir
 sysconfdir
@@ -672,6 +673,7 @@ datadir='${datarootdir}'
 sysconfdir='${prefix}/etc'
 sharedstatedir='${prefix}/com'
 localstatedir='${prefix}/var'
+runstatedir='${localstatedir}/run'
 includedir='${prefix}/include'
 oldincludedir='/usr/include'
 docdir='${datarootdir}/doc/${PACKAGE}'
@@ -924,6 +926,15 @@ do
   | -silent | --silent | --silen | --sile | --sil)
     silent=yes ;;
 
+  -runstatedir | --runstatedir | --runstatedi | --runstated \
+  | --runstate | --runstat | --runsta | --runst | --runs \
+  | --run | --ru | --r)
+    ac_prev=runstatedir ;;
+  -runstatedir=* | --runstatedir=* | --runstatedi=* | --runstated=* \
+  | --runstate=* | --runstat=* | --runsta=* | --runst=* | --runs=* \
+  | --run=* | --ru=* | --r=*)
+    runstatedir=$ac_optarg ;;
+
   -sbindir | --sbindir | --sbindi | --sbind | --sbin | --sbi | --sb)
     ac_prev=sbindir ;;
   -sbindir=* | --sbindir=* | --sbindi=* | --sbind=* | --sbin=* \
@@ -1061,7 +1072,7 @@ fi
 for ac_var in	exec_prefix prefix bindir sbindir libexecdir datarootdir \
 		datadir sysconfdir sharedstatedir localstatedir includedir \
 		oldincludedir docdir infodir htmldir dvidir pdfdir psdir \
-		libdir localedir mandir
+		libdir localedir mandir runstatedir
 do
   eval ac_val=\$$ac_var
   # Remove trailing slashes.
@@ -1214,6 +1225,7 @@ Fine tuning of the installation directories:
   --sysconfdir=DIR        read-only single-machine data [PREFIX/etc]
   --sharedstatedir=DIR    modifiable architecture-independent data [PREFIX/com]
   --localstatedir=DIR     modifiable single-machine data [PREFIX/var]
+  --runstatedir=DIR       modifiable per-process data [LOCALSTATEDIR/run]
   --libdir=DIR            object code libraries [EPREFIX/lib]
   --includedir=DIR        C header files [PREFIX/include]
   --oldincludedir=DIR     C header files for non-gcc [/usr/include]
@@ -1863,19 +1875,32 @@ else
   # AC_CHECK_FUNC([zgeev], [zgeev_ok=yes], [zgeev_ok=no])
 
   if test "X$ls_ok" = "Xyes" -a "X$sed_ok" = "Xyes" -a "X$grep_ok" = "Xyes"; then
-    ### Check R_ext/Lapack.h
-    LAPACK_HEADER="${R_HOME}/include/R_ext/Lapack.h"
-
-    funcs=`ls src/qz/*.f | sed -e "s/.*\/\(.*\)\.f/\\1/"`
     QZ_OBJS=""
-    for func in ${funcs}
-    do
-      func_ok=`grep "F77_NAME($func)" ${LAPACK_HEADER}`
-      echo "Found $func from ${func_ok}"
-      if test "X${func_ok}" = "X"; then
-        QZ_OBJS="${QZ_OBJS} qz/$func.o"
-      fi
-    done
+    # funcs=`ls src/qz/*.f | sed -e "s/.*\/\(.*\)\.f/\\1/"`
+
+    ### Check R_ext/Lapack.h
+    # LAPACK_HEADER="${R_HOME}/include/R_ext/Lapack.h"
+    # echo "LAPACK_HEADER=${LAPACK_HEADER}"
+    # for func in ${funcs}
+    # do
+    #   func_ok=`grep "F77_NAME($func)" ${LAPACK_HEADER}`
+    #   echo "Found $func from ${func_ok}"
+    #   if test "X${func_ok}" = "X"; then
+    #     QZ_OBJS="${QZ_OBJS} qz/$func.o"
+    #   fi
+    # done
+
+    ### Check lib/libRlapack.so using nm
+    # RLAPACK_LIB="${R_HOME}/lib${R_ARCH}/libRlapack.*"
+    # echo "RLAPACK_LIB=${RLAPACK_LIB}"
+    # for func in ${funcs}
+    # do
+    #   func_ok=`nm ${RLAPACK_LIB} | grep " T $func"`
+    #   echo "Found $func from ${func_ok}"
+    #   if test "X${func_ok}" = "X"; then
+    #     QZ_OBJS="${QZ_OBJS} qz/$func.o"
+    #   fi
+    # done
   else
     ### Use default if all above fail.
     QZ_OBJS="\$(QZ_OBJS)"

@@ -98,8 +98,8 @@
 *WCC  STOP
       GO TO 99999
 *
- 9999 FORMAT( ' ** On entry to ', A, ' parameter number ', I2, ' had ',
-     $      'an illegal value' )
+*WCC 9999 FORMAT( ' ** On entry to ', A, ' parameter number ', I2, ' had ',
+*WCC     $      'an illegal value' )
 *
 *     End of XERBLA
 *
