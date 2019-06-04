@@ -17,12 +17,12 @@ os:
 install:
   - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
   - chmod 755 ./travis-tool.sh
-  # - ./travis-tool.sh bootstrap
-  - ./travis-tool.sh install_deps
+  - ./travis-tool.sh bootstrap
+  #- ./travis-tool.sh install_deps
 
 script:
   - R CMD build --no-resave-data --no-manual --no-build-vignettes .
-  - R CMD check ./QZ_*.tar.gz
+  - R CMD INSTALL ./QZ_*.tar.gz
 
 after_failure:
   # - ./travis-tool.sh dump_logs
