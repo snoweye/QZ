@@ -5,7 +5,7 @@
 * **Status:** [![Build Status](https://travis-ci.org/snoweye/QZ.png)](https://travis-ci.org/snoweye/QZ) [![Appveyor Build status](https://ci.appveyor.com/api/projects/status/32r7s2skrgm9ubva?svg=true)](https://ci.appveyor.com/project/snoweye/QZ)
 * **Author:** Wei-Chen Chen
 
-QZ is an R package providing QZ factorization. QZ factorization for generalized eigenvalues and eigenvectors uses QZ decompositions (generalized Schur decomposition). Typically, the decompositions need an N-by-N non-symmetric matrix A or paired matrices (A,B) with eigenvalues reordering mechanism. The decomposition functions are mainly based Fortran subroutines in complex\*16 and double precision of LAPACK library (version 3.4.2. or later).  
+QZ is an R package providing QZ factorization. QZ factorization for generalized eigenvalues and eigenvectors uses QZ decomposition (generalized Schur decomposition). Typically, the decomposition needs an N-by-N non-symmetric matrix A or paired matrices (A,B) with eigenvalues reordering mechanism. The decomposition functions are mainly based Fortran subroutines in complex\*16 and double precision of LAPACK library (version 3.4.2. or later).  
 
 ## QZ requires
 
