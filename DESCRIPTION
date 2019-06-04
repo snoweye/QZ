@@ -9,9 +9,9 @@ Suggests: fda
 LazyLoad: yes
 LazyData: yes
 Copyright: See QZ/inst/LAPACK_LICENSE.txt for the files in src/qz/.
-Description: QZ factorization for generalized eigenvalues and eigenvectors
-        uses QZ decomposition (generalized Schur decomposition). Typically,
-        the decomposition needs an N-by-N non-symmetric
+Description: Generalized eigenvalues and eigenvectors
+        use QZ decomposition (generalized Schur decomposition).
+        The decomposition needs an N-by-N non-symmetric
         matrix A or paired matrices (A,B) with eigenvalues reordering
         mechanism. The decomposition functions are mainly based Fortran
         subroutines in complex*16 and double precision of LAPACK
