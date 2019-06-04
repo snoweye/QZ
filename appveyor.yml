@@ -22,4 +22,4 @@ environment:
 build_script:
   - travis-tool.sh install_deps
   - R CMD build --no-build-vignettes --no-manual --no-resave-data .
-  - R CMD check QZ*.tar.gz --as-cran
+  - R CMD INSTALL QZ*.tar.gz
