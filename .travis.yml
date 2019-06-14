@@ -1,10 +1,6 @@
-# Sample .travis.yml for R projects.
-#
-# See README.md for instructions, or for more configuration options,
-# see the wiki:
-#   https://github.com/craigcitro/r-travis/wiki
-
-language: r
+language: R
+sudo: required
+warnings_are_errors: true
 
 branches:
   only:
@@ -14,22 +10,21 @@ branches:
 os:
   - linux
 
-install:
-  - curl -OL http://raw.github.com/craigcitro/r-travis/master/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - ./travis-tool.sh bootstrap
-  #- ./travis-tool.sh install_deps
+env:
+  global:
+    - CRAN: https://cran.rstudio.com
+    - _R_CHECK_FORCE_SUGGESTS_=FALSE
 
-script:
-  - R CMD build --no-resave-data --no-manual --no-build-vignettes .
-  - R CMD INSTALL ./QZ_*.tar.gz
+before_install:
+  - sudo apt-get update -q
 
-after_failure:
-  # - ./travis-tool.sh dump_logs
+r_packages:
+  - fda
+
+r_check_args: --no-build-vignettes --no-manual
 
 notifications:
   email:
     on_success: no
     on_failure: no
 
-sudo: required
