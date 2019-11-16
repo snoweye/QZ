@@ -91,6 +91,17 @@ else
   fi
 fi
 
+
+dnl Check enable internal QZ
+AC_ARG_ENABLE(iqz,
+  AC_HELP_STRING([--enable-iqz], [Enable internal QZ functions, default no.]),
+                 [ENABLE_IQZ="yes"], [ENABLE_IQZ="no"])
+if test "X$ENABLE_IQZ" = "Xyes" ; then
+  ### Use default to overwrite all above regardless.
+  QZ_OBJS="\$(QZ_OBJS)"
+fi
+
+
 dnl Start to substitute templates
 AC_SUBST(QZ_OBJS)
 AC_OUTPUT(src/Makevars)

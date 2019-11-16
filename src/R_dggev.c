@@ -11,7 +11,7 @@ SEXP R_dggev(SEXP JOBVL, SEXP JOBVR, SEXP N,
 	int n = INTEGER(N)[0], total_length;
 	SEXP S, T;
 	char CS_JOBVL = CHARPT(JOBVL, 0)[0], CS_JOBVR = CHARPT(JOBVR, 0)[0];
-	int CF_wrap;
+	int CF_iwrap;
 
 	/* Protect R objects. */
 	PROTECT(S = allocMatrix(REALSXP, n, n));
@@ -24,17 +24,17 @@ SEXP R_dggev(SEXP JOBVL, SEXP JOBVR, SEXP N,
 
 	/* Call Fortran. */
 	if(CS_JOBVL == 'V' && CS_JOBVR == 'V'){
-		CF_wrap = 0;
+		CF_iwrap = 0;
 	} else if(CS_JOBVL == 'N' && CS_JOBVR == 'V'){
-		CF_wrap = 1;
+		CF_iwrap = 1;
 	} else if(CS_JOBVL == 'V' && CS_JOBVR == 'N'){
-		CF_wrap = 2;
+		CF_iwrap = 2;
 	} else if(CS_JOBVL == 'N' && CS_JOBVR == 'N'){
-		CF_wrap = 3;
+		CF_iwrap = 3;
 	} else{
 		REprintf("Input (CHARACTER) types are not implemented.\n");
 	}
-	F77_CALL(wdggev)(&CF_wrap,
+	F77_CALL(wdggev)(&CF_iwrap,
 		INTEGER(N), REAL(S), INTEGER(LDA),
 		REAL(T), INTEGER(LDB),
 		REAL(ALPHAR), REAL(ALPHAI), REAL(BETA),

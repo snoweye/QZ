@@ -1,7 +1,7 @@
-      SUBROUTINE WDGEEV( WRAP, N, A, LDA, WR, WI, VL, LDVL, VR,
+      SUBROUTINE WDGEEV( IWRAP, N, A, LDA, WR, WI, VL, LDVL, VR,
      $                  LDVR, WORK, LWORK, INFO )
 *     .. Scalar Arguments ..
-      INTEGER            WRAP
+      INTEGER            IWRAP
       INTEGER            INFO, LDA, LDVL, LDVR, LWORK, N
 *     ..
 *     .. Array Arguments ..
@@ -11,16 +11,16 @@
       EXTERNAL           DGEEV
 *
       CHARACTER          JOBVL, JOBVR
-      IF (WRAP .EQ. 0) THEN
+      IF (IWRAP .EQ. 0) THEN
           JOBVL = 'V'
           JOBVR = 'V'
-      ELSE IF (WRAP .EQ. 1) THEN
+      ELSE IF (IWRAP .EQ. 1) THEN
           JOBVL = 'N'
           JOBVR = 'V'
-      ELSE IF (WRAP .EQ. 2) THEN
+      ELSE IF (IWRAP .EQ. 2) THEN
           JOBVL = 'V'
           JOBVR = 'N'
-      ELSE IF (WRAP .EQ. 3) THEN
+      ELSE IF (IWRAP .EQ. 3) THEN
           JOBVL = 'N'
           JOBVR = 'N'
       END IF

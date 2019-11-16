@@ -9,7 +9,7 @@ SEXP R_ztrsen(SEXP JOB, SEXP COMPQ, SEXP SELECT,
 	int n = INTEGER(N)[0], total_length;
 	SEXP RET, RET_NAMES, T_OUT, Q_OUT;
 	char CS_JOB = CHARPT(JOB, 0)[0], CS_COMPQ = CHARPT(COMPQ, 0)[0];
-	int CF_wrap;
+	int CF_iwrap;
 
 	/* Protect R objects. */
 	PROTECT(RET = allocVector(VECSXP, 2));
@@ -30,25 +30,25 @@ SEXP R_ztrsen(SEXP JOB, SEXP COMPQ, SEXP SELECT,
 
 	/* Call Fortran. */
 	if(CS_JOB == 'B' && CS_COMPQ == 'V'){
-		CF_wrap = 0;
+		CF_iwrap = 0;
 	} else if (CS_JOB == 'V' && CS_COMPQ == 'V'){
-		CF_wrap = 1;
+		CF_iwrap = 1;
 	} else if (CS_JOB == 'E' && CS_COMPQ == 'V'){
-		CF_wrap = 2;
+		CF_iwrap = 2;
 	} else if (CS_JOB == 'N' && CS_COMPQ == 'V'){
-		CF_wrap = 3;
+		CF_iwrap = 3;
 	} else if (CS_JOB == 'B' && CS_COMPQ == 'N'){
-		CF_wrap = 4;
+		CF_iwrap = 4;
 	} else if (CS_JOB == 'V' && CS_COMPQ == 'N'){
-		CF_wrap = 5;
+		CF_iwrap = 5;
 	} else if (CS_JOB == 'E' && CS_COMPQ == 'N'){
-		CF_wrap = 6;
+		CF_iwrap = 6;
 	} else if (CS_JOB == 'N' && CS_COMPQ == 'N'){
-		CF_wrap = 7;
+		CF_iwrap = 7;
 	} else{
 		REprintf("Input (CHARACTER) types are not implemented.\n");
 	}
-	F77_CALL(wztrsen)(&CF_wrap,
+	F77_CALL(wztrsen)(&CF_iwrap,
 		INTEGER(SELECT), INTEGER(N),
 		COMPLEX(T_OUT), INTEGER(LDT),
 		COMPLEX(Q_OUT), INTEGER(LDQ),

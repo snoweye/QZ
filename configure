@@ -631,6 +631,7 @@ SHELL'
 ac_subst_files=''
 ac_user_opts='
 enable_option_checking
+enable_iqz
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1248,6 +1249,12 @@ fi
 if test -n "$ac_init_help"; then
 
   cat <<\_ACEOF
+
+Optional Features:
+  --disable-option-checking  ignore unrecognized --enable/--with options
+  --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
+  --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
+  --enable-iqz            Enable internal QZ functions, default no.
 
 Report bugs to the package provider.
 _ACEOF
@@ -1906,6 +1913,20 @@ else
     QZ_OBJS="\$(QZ_OBJS)"
   fi
 fi
+
+
+# Check whether --enable-iqz was given.
+if test "${enable_iqz+set}" = set; then :
+  enableval=$enable_iqz; ENABLE_IQZ="yes"
+else
+  ENABLE_IQZ="no"
+fi
+
+if test "X$ENABLE_IQZ" = "Xyes" ; then
+  ### Use default to overwrite all above regardless.
+  QZ_OBJS="\$(QZ_OBJS)"
+fi
+
 
 
 ac_config_files="$ac_config_files src/Makevars"
