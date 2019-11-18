@@ -2,7 +2,7 @@
      $                  SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK,
      $                  LWORK, RWORK, BWORK, INFO )
 *     .. Scalar Arguments ..
-      INTEGER            IWARP
+      INTEGER            IWRAP
       INTEGER            INFO, LDA, LDB, LDVSL, LDVSR, LWORK, N, SDIM
 *     .. Array Arguments ..
       LOGICAL            BWORK( * )
