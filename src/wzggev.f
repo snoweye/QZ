@@ -12,6 +12,7 @@
       EXTERNAL           ZGGEV
 *
       CHARACTER          JOBVL, JOBVR
+*
       IF (IWRAP .EQ. 0) THEN
           JOBVL = 'V'
           JOBVR = 'V'

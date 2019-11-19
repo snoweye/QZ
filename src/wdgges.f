@@ -1,11 +1,12 @@
       SUBROUTINE WDGGES( IWRAP, SELCTG, N, A, LDA, B, LDB,
      $                  SDIM, ALPHAR, ALPHAI, BETA, VSL, LDVSL, VSR,
-     $                  LDVSR, WORK, LWORK, BWORK, INFO )
+     $                  LDVSR, WORK, LWORK, IBWORK, INFO )
 *     .. Scalar Arguments ..
       INTEGER            IWRAP
       INTEGER            INFO, LDA, LDB, LDVSL, LDVSR, LWORK, N, SDIM
 *     .. Array Arguments ..
-      LOGICAL            BWORK( * )
+      INTEGER            IBWORK( * )
+      LOGICAL            BWORK( N )
       DOUBLE PRECISION   A( LDA, * ), ALPHAI( * ), ALPHAR( * ),
      $                   B( LDB, * ), BETA( * ), VSL( LDVSL, * ),
      $                   VSR( LDVSR, * ), WORK( * )
@@ -16,6 +17,7 @@
       EXTERNAL           DGGES
 *
       CHARACTER          JOBVSL, JOBVSR, SORT
+*
       IF (IWRAP .EQ. 0) THEN
           JOBVSL = 'V'
           JOBVSR = 'V'
@@ -33,6 +35,14 @@
           JOBVSR = 'N'
           SORT = 'N'
       END IF
+*
+      DO 10 I = 1, N
+         IF (IBWORK(I) .EQ. 1) THEN
+            BWORK(I) = .TRUE.
+         ELSE
+            BWORK(I) = .FALSE.
+         END IF
+   10 CONTINUE
 *
       CALL DGGES( JOBVSL, JOBVSR, SORT, SELCTG, N, A, LDA, B, LDB,
      $            SDIM, ALPHAR, ALPHAI, BETA, VSL, LDVSL, VSR,

@@ -1,4 +1,4 @@
-      SUBROUTINE WDTRSEN( IWRAP, SELECT, N, T, LDT, Q, LDQ, WR, WI,
+      SUBROUTINE WDTRSEN( IWRAP, ISELECT, N, T, LDT, Q, LDQ, WR, WI,
      $                   M, S, SEP, WORK, LWORK, IWORK, LIWORK, INFO )
 *     .. Scalar Arguments ..
       INTEGER            IWRAP
@@ -6,7 +6,8 @@
       DOUBLE PRECISION   S, SEP
 *     ..
 *     .. Array Arguments ..
-      LOGICAL            SELECT( * )
+      INTEGER            I, ISELECT( * )
+      LOGICAL            SELECT( N )
       INTEGER            IWORK( * )
       DOUBLE PRECISION   Q( LDQ, * ), T( LDT, * ), WI( * ), WORK( * ),
      $                   WR( * )
@@ -39,6 +40,14 @@
           JOB = 'N'
           COMPQ = 'N'
       END IF
+*
+      DO 10 I = 1, N
+         IF (ISELECT(I) .EQ. 1) THEN
+            SELECT(I) = .TRUE.
+         ELSE
+            SELECT(I) = .FALSE.
+         END IF
+   10 CONTINUE
 *
       CALL DTRSEN( JOB, COMPQ, SELECT, N, T, LDT, Q, LDQ, WR, WI,
      $             M, S, SEP, WORK, LWORK, IWORK, LIWORK, INFO )

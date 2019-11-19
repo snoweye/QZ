@@ -33,7 +33,7 @@ qz.dtrsen <- function(T, Q, select, job = c("B", "V", "E", "N"),
   # Prepare
   JOB <- as.character(job[1])
   COMPQ <- ifelse(want.Q, "V", "N")
-  SELECT <- as.integer(as.logical(select))
+  ISELECT <- as.integer(as.logical(select))
 
   N <- as.integer(ncol(T))
   # T.out <- T                       # WCC: memory copy, done in C.
@@ -66,7 +66,7 @@ qz.dtrsen <- function(T, Q, select, job = c("B", "V", "E", "N"),
 
   # Run
   ret <- .Call("R_dtrsen",
-               JOB, COMPQ, SELECT, N, T, LDB, Q, LDQ,
+               JOB, COMPQ, ISELECT, N, T, LDB, Q, LDQ,
                WR, WI, M, S, SEP,
                WORK, LWORK, IWORK, LIWORK, INFO,
                PACKAGE = "QZ")

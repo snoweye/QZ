@@ -23,7 +23,7 @@ qz.dgees <- function(A, vs = TRUE, LWORK = NULL){
   # Prepare
   JOBVS <- ifelse(vs, "V", "N")
   SORT <- "N"                        # WCC: TODO
-  SELECT <- 0L                       # WCC: TODO, no effect if SORT = "N".
+  ISELECT <- 0L                      # WCC: TODO, no effect if SORT = "N".
 
   N <- as.integer(ncol(A))
   # S <- A                           # WCC: memory copy, done in C.
@@ -55,7 +55,7 @@ qz.dgees <- function(A, vs = TRUE, LWORK = NULL){
 
   # Run
   ret <- .Call("R_dgees",
-               JOBVS, SORT, SELECT, N,
+               JOBVS, SORT, ISELECT, N,
                A, LDA, SDIM,
                WR, WI, VS, LDVS,
                WORK, LWORK, BWORK,

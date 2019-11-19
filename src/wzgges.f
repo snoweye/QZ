@@ -1,11 +1,12 @@
       SUBROUTINE WZGGES( IWRAP, SELCTG, N, A, LDA, B, LDB,
      $                  SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK,
-     $                  LWORK, RWORK, BWORK, INFO )
+     $                  LWORK, RWORK, IBWORK, INFO )
 *     .. Scalar Arguments ..
       INTEGER            IWRAP
       INTEGER            INFO, LDA, LDB, LDVSL, LDVSR, LWORK, N, SDIM
 *     .. Array Arguments ..
-      LOGICAL            BWORK( * )
+      INTEGER            IBWORK( * )
+      LOGICAL            BWORK( N )
       DOUBLE PRECISION   RWORK( * )
       COMPLEX*16         A( LDA, * ), ALPHA( * ), B( LDB, * ),
      $                   BETA( * ), VSL( LDVSL, * ), VSR( LDVSR, * ),
@@ -17,6 +18,7 @@
       EXTERNAL           ZGGES
 *
       CHARACTER          JOBVSL, JOBVSR, SORT
+*
       IF (IWRAP .EQ. 0) THEN
           JOBVSL = 'V'
           JOBVSR = 'V'
@@ -34,6 +36,14 @@
           JOBVSR = 'N'
           SORT = 'N'
       END IF
+*
+      DO 10 I = 1, N
+         IF (IBWORK(I) .EQ. 1) THEN
+            BWORK(I) = .TRUE.
+         ELSE
+            BWORK(I) = .FALSE.
+         END IF
+   10 CONTINUE
 *
       CALL ZGGES( JOBVSL, JOBVSR, SORT, SELCTG, N, A, LDA, B, LDB,
      $            SDIM, ALPHA, BETA, VSL, LDVSL, VSR, LDVSR, WORK,

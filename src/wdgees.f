@@ -1,10 +1,11 @@
       SUBROUTINE WDGEES( IWRAP, SELECT, N, A, LDA, SDIM, WR, WI,
-     $                  VS, LDVS, WORK, LWORK, BWORK, INFO )
+     $                  VS, LDVS, WORK, LWORK, IBWORK, INFO )
 *     .. Scalar Arguments ..
       INTEGER            IWRAP
       INTEGER            INFO, LDA, LDVS, LWORK, N, SDIM
 *     .. Array Arguments ..
-      LOGICAL            BWORK( * )
+      INTEGER            IBWORK( * )
+      LOGICAL            BWORK( N )
       DOUBLE PRECISION   A( LDA, * ), VS( LDVS, * ), WI( * ), WORK( * ),
      $                   WR( * )
 *     .. Function Arguments ..
@@ -14,6 +15,7 @@
       EXTERNAL           DGEES
 *
       CHARACTER          JOBVS, SORT
+*
       IF (IWRAP .EQ. 0) THEN
           JOBVS = 'V'
           SORT = 'N'
@@ -21,6 +23,14 @@
           JOBVS = 'N'
           SORT = 'N'
       END IF
+*
+      DO 10 I = 1, N
+         IF (IBWORK(I) .EQ. 1) THEN
+            BWORK(I) = .TRUE.
+         ELSE
+            BWORK(I) = .FALSE.
+         END IF
+   10 CONTINUE
 *
       CALL DGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, WR, WI,
      $            VS, LDVS, WORK, LWORK, BWORK, INFO )

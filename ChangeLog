@@ -1,3 +1,6 @@
+2019-11-18: Ver. 0.1-8
+  * Fix more LTO mismatch argument types.
+
 2019-11-16: Ver. 0.1-8
   * Add "--enable-iqz" to force interal QZ fortran functions.
   * Change WRAP to IWRAP and CF_wrap to CF_iwrap to avoid REAL pointers.

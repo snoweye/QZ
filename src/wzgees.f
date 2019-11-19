@@ -1,10 +1,11 @@
       SUBROUTINE WZGEES( IWRAP, SELECT, N, A, LDA, SDIM, W, VS,
-     $                  LDVS, WORK, LWORK, RWORK, BWORK, INFO )
+     $                  LDVS, WORK, LWORK, RWORK, IBWORK, INFO )
 *     .. Scalar Arguments ..
       INTEGER            IWRAP
       INTEGER            INFO, LDA, LDVS, LWORK, N, SDIM
 *     .. Array Arguments ..
-      LOGICAL            BWORK( * )
+      INTEGER            IBWORK( * )
+      LOGICAL            BWORK( N )
       DOUBLE PRECISION   RWORK( * )
       COMPLEX*16         A( LDA, * ), VS( LDVS, * ), W( * ), WORK( * )
 *     .. Function Arguments ..
@@ -14,6 +15,7 @@
       EXTERNAL           ZGEES
 *
       CHARACTER          JOBVS, SORT
+*
       IF (IWRAP .EQ. 0) THEN
           JOBVS = 'V'
           SORT = 'N'
@@ -21,6 +23,14 @@
           JOBVS = 'N'
           SORT = 'N'
       END IF
+*
+      DO 10 I = 1, N
+         IF (IBWORK(I) .EQ. 1) THEN
+            BWORK(I) = .TRUE.
+         ELSE
+            BWORK(I) = .FALSE.
+         END IF
+   10 CONTINUE
 *
       CALL ZGEES( JOBVS, SORT, SELECT, N, A, LDA, SDIM, W, VS,
      $            LDVS, WORK, LWORK, RWORK, BWORK, INFO )

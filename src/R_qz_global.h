@@ -29,7 +29,7 @@ extern void F77_NAME(wzgeev)(int *CF_iwrap,
 	Rcomplex *VL, int *LDVL, Rcomplex *VR, int *LDVR,
 	Rcomplex *WORK, int *LWORK, double *RWORK,
 	int *INFO);
-extern void F77_NAME(wztrsen)(int *CF_iwrap, int *SELECT,
+extern void F77_NAME(wztrsen)(int *CF_iwrap, int *ISELECT,
 	int *N, Rcomplex *T, int *LDT,
 	Rcomplex *Q, int *LDQ, Rcomplex *W, int *M, double *S,
 	double *SEP, Rcomplex *WORK, int *LWORK, int *INFO);
@@ -50,7 +50,7 @@ extern void F77_NAME(wzggev)(int *CF_iwrap,
 	Rcomplex *VL, int *LDVL, Rcomplex *VR, int *LDVR,
 	Rcomplex *WORK, int *LWORK, double *RWORK,
 	int *INFO);
-extern void F77_NAME(ztgsen)(int *IJOB, int *WANTQ, int *WANTZ, int *SELECT,
+extern void F77_NAME(wztgsen)(int *IJOB, int *IWANTQ, int *IWANTZ, int *ISELECT,
 	int *N, Rcomplex *A, int *LDA, Rcomplex *B, int *LDB,
 	/* (A,B) is in (S,T). */
 	Rcomplex *ALPHA, Rcomplex *BETA, Rcomplex *Q, int *LDQ,
@@ -73,7 +73,7 @@ extern void F77_NAME(wdgeev)(int *CF_iwrap,
 	double *VL, int *LDVL, double *VR, int *LDVR,
 	double *WORK, int *LWORK,
 	int *INFO);
-extern void F77_NAME(wdtrsen)(int *CF_iwrap, int *SELECT,
+extern void F77_NAME(wdtrsen)(int *CF_iwrap, int *ISELECT,
 	int *N, double *T, int *LDT,
 	double *Q, int *LDQ,
 	double *WR, double *WI,
@@ -96,7 +96,7 @@ extern void F77_NAME(wdggev)(int *CF_iwrap,
 	double *VL, int *LDVL, double *VR, int *LDVR,
 	double *WORK, int *LWORK,
 	int *INFO);
-extern void F77_NAME(dtgsen)(int *IJOB, int *WANTQ, int *WANTZ, int *SELECT,
+extern void F77_NAME(wdtgsen)(int *IJOB, int *IWANTQ, int *IWANTZ, int *ISELECT,
 	int *N, double *A, int *LDA, double *B, int *LDB,
 	/* (A,B) is in (S,T). */
 	double *ALPHAR, double *ALPHAI, double *BETA, double *Q, int *LDQ,

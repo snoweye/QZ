@@ -42,11 +42,13 @@ wdgees.o \
 wdgeev.o \
 wdgges.o \
 wdggev.o \
+wdtgsen.o \
 wdtrsen.o \
 wzgees.o \
 wzgeev.o \
 wzgges.o \
 wzggev.o \
+wztgsen.o \
 wztrsen.o
 
 QZ_OBJS= \

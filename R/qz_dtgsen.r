@@ -32,9 +32,9 @@ qz.dtgsen <- function(S, T, Q, Z, select, ijob = 4L,
 
   # Prepare
   IJOB <- as.integer(ijob)
-  WANTQ <- as.integer(as.logical(want.Q))
-  WANTZ <- as.integer(as.logical(want.Z))
-  SELECT <- as.integer(as.logical(select))
+  IWANTQ <- as.integer(as.logical(want.Q))
+  IWANTZ <- as.integer(as.logical(want.Z))
+  ISELECT <- as.integer(as.logical(select))
 
   N <- as.integer(ncol(S))
   # S.out <- S                       # WCC: memory copy, done in C.
@@ -73,7 +73,7 @@ qz.dtgsen <- function(S, T, Q, Z, select, ijob = 4L,
 
   # Run
   ret <- .Call("R_dtgsen",
-               IJOB, WANTQ, WANTZ, SELECT, N, S, LDA, T, LDB,
+               IJOB, IWANTQ, IWANTZ, ISELECT, N, S, LDA, T, LDB,
                ALPHAR, ALPHAI, BETA, Q, LDQ, Z, LDZ, M, PL, PR, DIF,
                WORK, LWORK, IWORK, LIWORK, INFO,
                PACKAGE = "QZ")
