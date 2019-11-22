@@ -7,7 +7,7 @@ static const R_CallMethodDef callMethods[] = {
 	{"R_dgees", (DL_FUNC) &R_dgees, 15},
 	{"R_dgeev", (DL_FUNC) &R_dgeev, 14},
 	{"R_dgges", (DL_FUNC) &R_dgges, 21},
-	{"R_dggev", (DL_FUNC) &R_dggev, 18},
+	{"R_dggev", (DL_FUNC) &R_dggev, 17},
 	{"R_dtgsen", (DL_FUNC) &R_dtgsen, 25},
 	{"R_dtrsen", (DL_FUNC) &R_dtrsen, 18},
 	{"R_zgees", (DL_FUNC) &R_zgees, 15},
