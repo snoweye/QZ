@@ -68,15 +68,13 @@ qz.dggev <- function(A, B, vl = TRUE, vr = TRUE, LWORK = NULL){
   }
   WORK <- double(LWORK)
 
-  BWORK <- integer(1)                # WCC: TODO, no effect if SORT = "N".
-
   INFO <- integer(1)
 
   ret <- .Call("R_dggev",
                JOBVL, JOBVR, N,
                A, LDA, B, LDB,
                ALPHAR, ALPHAI, BETA, VL, LDVL, VR, LDVR,
-               WORK, LWORK, BWORK,
+               WORK, LWORK,
                INFO,
                PACKAGE = "QZ")
 
