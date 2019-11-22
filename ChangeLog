@@ -1,3 +1,6 @@
+2019-11-21: Ver. 0.1-9
+  * Fix BWORK to be integers of length N that trigger valgrind errors.
+
 2019-11-18: Ver. 0.1-8
   * Fix more LTO mismatch argument types.
 

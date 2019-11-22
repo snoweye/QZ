@@ -50,7 +50,7 @@ qz.zgees <- function(A, vs = TRUE, LWORK = NULL){
 
   RWORK <- double(N)
 
-  BWORK <- integer(1)                # WCC: TODO, no effect if SORT = "N".
+  BWORK <- integer(N)                # WCC: TODO, no effect if SORT = "N".
 
   INFO <- integer(1)
 

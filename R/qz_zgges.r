@@ -66,7 +66,7 @@ qz.zgges <- function(A, B, vsl = TRUE, vsr = TRUE, LWORK = NULL){
 
   RWORK <- double(8 * N)
 
-  BWORK <- integer(1)                # WCC: TODO, no effect if SORT = "N".
+  BWORK <- integer(N)                # WCC: TODO, no effect if SORT = "N".
 
   INFO <- integer(1)
 
