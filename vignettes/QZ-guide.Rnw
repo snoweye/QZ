@@ -15,9 +15,7 @@ Wei-Chen Chen
 \end{minipage}
 \\
 \\
-Computer Science and Mathematics Division, \\
-Oak Ridge National Laboratory, \\
-Oak Ridge, TN, USA \\
+pbdR Core Team \\
 %\\
 %\\
 %\today

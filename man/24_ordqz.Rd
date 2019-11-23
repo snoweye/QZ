@@ -7,7 +7,9 @@
 }
 \usage{
   ordqz(A, B = NULL, cluster = NULL,
-        keyword = c("lhp", "rhp", "udi", "udo", "ref", "cef"), ...)
+        keyword = c("lhp", "rhp", "udi", "udo", "ref", "cef",
+                    "lhp.fo", "rhp.fo", "udi.fo", "udo.fo"),
+        ...)
 }
 \arguments{
   \item{A}{a 'complex/real' matrix, dim = c(N, N).}
@@ -26,11 +28,15 @@
 \tabular{ll}{
   keyword \tab Selected Region \cr
   'lhp'   \tab Left-half plane (real(E) < 0) \cr
-  'rhp'   \tab Right-half plane (real(E) > 0) \cr
+  'rhp'   \tab Right-half plane (real(E) >= 0) \cr
   'udi'   \tab Interior of unit disk (abs(E) < 1) \cr
-  'udo'   \tab Exterior of unit disk (abs(E) < 1) \cr
+  'udo'   \tab Exterior of unit disk (abs(E) >= 1) \cr
   'ref'   \tab Real eigenvalues first (top-left conner) \cr
   'cef'   \tab Complex eigenvalues first (top-left conner) \cr
+  'lhp'   \tab Left-half plane (real(E) < 0) and finite only \cr
+  'rhp'   \tab Right-half plane (real(E) >= 0) and finite only \cr
+  'udi'   \tab Interior of unit disk (abs(E) < 1) and finite only \cr
+  'udo'   \tab Exterior of unit disk (abs(E) >= 1) and finite only \cr
 }
 }
 \value{
@@ -59,6 +65,10 @@ library(QZ, quiet = TRUE)
 (ret <- ordqz(exAB1$A, exAB1$B, keyword = "udo"))
 (ret <- ordqz(exAB1$A, exAB1$B, keyword = "ref"))
 (ret <- ordqz(exAB1$A, exAB1$B, keyword = "cef"))
+(ret <- ordqz(exAB1$A, exAB1$B, keyword = "lhp.fo"))
+(ret <- ordqz(exAB1$A, exAB1$B, keyword = "rhp.fo"))
+(ret <- ordqz(exAB1$A, exAB1$B, keyword = "udi.fo"))
+(ret <- ordqz(exAB1$A, exAB1$B, keyword = "udo.fo"))
 
 % }
 }

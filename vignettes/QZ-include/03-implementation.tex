@@ -14,6 +14,41 @@ via \code{.Call()}
 for \proglang{C} and \proglang{Fortran} functions to LAPACK library 
 version 3.4.2.
 
+
+\subsection[For Matlab Users]{For Matlab Users}
+\label{sec:matlabe}
+\addcontentsline{toc}{subsection}{\thesection. For matlab Users}
+
+In Matlab,
+one may need to specify options for complex or real systems
+be used for obtaining the (generalized) eigenvalues and
+for constructing the QZ decomposition.
+In the \pkg{QZ} package, \code{qz()}
+will based on the data type of the input matrix $\bA$ or 
+the paired matrices $(\bA,\bB)$ to select
+accordingly the warpper functions \code{qz.*()}
+as the feature of S3 method in \proglang{R}.
+
+In \proglang{R} one may still used the {qz.*()} individually if needed,
+or convert the data type as desired. 
+Fore example, one may use \code{as.complex()}
+on the input real/double matrix $\bA$ or matrices $(\bA, \bB)$
+to call the complex version of \code{qz()} as below
+\begin{Code}[title=Use complex system via \code{as.complex()}]
+A <- matrix(rnorm(9), nrow = 3)
+B <- matrix(rnorm(9), nrow = 3)
+ret.d <- qz(A, B, only.values = TRUE)
+ret.c <- qz(matrix(as.complex(A), nrow(A)),
+            matrix(as.complex(B), nrow(B)), only.values = TRUE)
+str(ret.d)  # class of "dgges"
+str(ret.c)  # class of "zgges"
+\end{Code}
+
+
+\subsection[LAPACK Functions]{LAPACK Functions}
+\label{sec:lapack}
+\addcontentsline{toc}{subsection}{\thesection. LAPACK Functions}
+
 LAPACK library is incorporated in \pkg{QZ} including
 complex*16 and double precision for complex and real systems respectively.
 \pkg{QZ} has functions of
@@ -22,7 +57,6 @@ independently to the \proglang{R}'s LAPACK and BLAS libraries
 since some functions are not available.
 Table~\ref{tab:qz_functions} provides a detail lists for the \code{qz.*()}
 functions.
-
 
 \begin{table}[h!tb]
 \begin{center}
@@ -79,6 +113,11 @@ Wrapper          & Main Input        & System & Purpose \\
 \end{center}
 \end{table}
 
+
+\subsection[Reordering]{Reording}
+\label{sec:reordering}
+\addcontentsline{toc}{subsection}{\thesection. Reording}
+
 An extral MATLAB-like function \code{ordqz()} is also available to reordering
 generalized eigenvalues and QZ decomposition results. The function which is
 the combinations of \code{qz()} and \code{qz.ztrsen()/qz.dtrsen()} for
@@ -90,15 +129,24 @@ specified ordering keywords in Table~\ref{tab:ordqz}.
 \begin{tabular}{c|l} \hline \hline
 \code{keyword} & Purpose \\ \hline
 \code{lhp} & Left-half (real(E) < 0) \\
-\code{rhp} & Right-half (real(E) > 0) \\
+\code{rhp} & Right-half (real(E) >= 0) \\
 \code{udi} & Interior of unit disk (abs(E) < 1) \\
-\code{udo} & Exterior of unit disk (abs(E) > 1) \\
+\code{udo} & Exterior of unit disk (abs(E) >= 1) \\
 \code{ref} & Real eigenvalues first (top-left conner) \\
 \code{cef} & Complex eigenvalues first (top-left conner) \\
+\code{lhp.fo} & Left-half (real(E) < 0) and finite only \\
+\code{rhp.fo} & Right-half (real(E) >= 0) and finite only \\
+\code{udi.fo} & Interior of unit disk (abs(E) < 1) and finite only \\
+\code{udo.fo} & Exterior of unit disk (abs(E) >= 1) and finite only \\
 \hline\hline
 \end{tabular}
 \end{center}
 \end{table}
+The keywords \code{lhp}, \code{rhp}, \code{udi}, and \code{udo} are
+implemented as (or similar to) the way Matlab does.
+Additionally,
+the keywords \code{*.fo} are implemented to select finite (generalized)
+eigen values only.
 Note that \code{select} argument of \code{qz()} allows users to specify
 any order to group and reorder the decompositions.
 
