@@ -15,26 +15,23 @@ for \proglang{C} and \proglang{Fortran} functions to LAPACK library
 version 3.4.2.
 
 
-\subsection[For Matlab Users]{For Matlab Users}
-\label{sec:matlabe}
-\addcontentsline{toc}{subsection}{\thesection. For matlab Users}
+\subsection[R and LAPACK Functions]{R and LAPACK Functions}
+\label{sec:lapack}
+\addcontentsline{toc}{subsection}{\thesection. R and LAPACK Functions}
 
-In Matlab,
-one may need to specify options for complex or real systems
-be used for obtaining the (generalized) eigenvalues and
-for constructing the QZ decomposition.
 In the \pkg{QZ} package, \code{qz()}
 will based on the data type of the input matrix $\bA$ or 
 the paired matrices $(\bA,\bB)$ to select
 accordingly the warpper functions \code{qz.*()}
 as the feature of S3 method in \proglang{R}.
 
-In \proglang{R} one may still used the {qz.*()} individually if needed,
+In \proglang{R}, one may still used the {qz.*()} individually if needed,
 or convert the data type as desired. 
-Fore example, one may use \code{as.complex()}
+For example, one may use \code{as.complex()}
 on the input real/double matrix $\bA$ or matrices $(\bA, \bB)$
 to call the complex version of \code{qz()} as below
 \begin{Code}[title=Use complex system via \code{as.complex()}]
+set.seed(123)
 A <- matrix(rnorm(9), nrow = 3)
 B <- matrix(rnorm(9), nrow = 3)
 ret.d <- qz(A, B, only.values = TRUE)
@@ -44,17 +41,16 @@ str(ret.d)  # class of "dgges"
 str(ret.c)  # class of "zgges"
 \end{Code}
 
-
-\subsection[LAPACK Functions]{LAPACK Functions}
-\label{sec:lapack}
-\addcontentsline{toc}{subsection}{\thesection. LAPACK Functions}
-
-LAPACK library is incorporated in \pkg{QZ} including
-complex*16 and double precision for complex and real systems respectively.
-\pkg{QZ} has functions of
+LAPACK library is internally incorporated in \pkg{QZ} including
+complex*16 and double precision for complex and real systems, respectively.
+To use internal LAPACK library of the \pkg{QZ},
+one may add \code{--configure-args="--enable-iqz"}
+to \code{R CMD INSTALL QZ_*.tar.gz}
+when installing the \pkg{QZ} package.
+\pkg{QZ} also allows some functions of
 LAPACK and BLAS~\citep{BLAS}
 independently to the \proglang{R}'s LAPACK and BLAS libraries
-since some functions are not available.
+when some functions are not available.
 Table~\ref{tab:qz_functions} provides a detail lists for the \code{qz.*()}
 functions.
 
@@ -150,3 +146,43 @@ eigen values only.
 Note that \code{select} argument of \code{qz()} allows users to specify
 any order to group and reorder the decompositions.
 
+
+\subsection[For Matlab Users]{For Matlab Users}
+\label{sec:matlabe}
+\addcontentsline{toc}{subsection}{\thesection. For matlab Users}
+
+In Matlab,
+one may need to specify options for complex or real systems
+be used for obtaining the (generalized) eigenvalues and
+for constructing the QZ decomposition.
+Some Matlab versions may assume a ``complex'' system as the default
+regardless input types.
+
+Some Matlab versions may need additional options to turn on
+``double precision'' for the QZ decomposition.
+The error of the QZ decomposition
+(in terms of maximum modulus of whole matrix)
+may be around in the range of \code{1e-05} to \code{1e-06}
+where the modulus is $r = Mod(z) = sqrt(x^2 + y^2)$.
+Note that \code{1e-15} to \code{1e-16} should be expected if
+double precission is used correctly.
+
+The notations used in Matlab also may not be followed or consistent
+as used in
+\begin{itemize}
+\item \pkg{QZ} in \proglang{R},
+\item its depending LAPACK functions,
+\item general QZ notations in some textbooks, or
+\item Wikipedia webpage.
+\end{itemize}
+In newer Matlab, the documents say that
+\code{[AA, BB, Q, Z] = qz(A, B)}
+produces upper quasitriangular matrices \code{AA} and \code{BB},
+and unitary matrices \code{Q} and \code{Z} such that
+\code{Q * A * Z = AA} and \code{Q * B * Z = BB}.
+Here, the \code{Z} in the Matlab notations
+are the conjugated versions of the QZ decomposition
+where $A = Q \times S \times Z^{*}$ and $B = Q \times T \times Z^{*}$.
+i.e. The \code{Z} in Matlab is actually $Z^{*}$ in the general QZ notations.
+The \code{AA} and \code{BB} in Matlab are the same $S$ and $T$ in the
+general QZ notations.

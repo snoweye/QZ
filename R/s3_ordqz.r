@@ -47,7 +47,7 @@ ordqz <- function(A, B = NULL, cluster = NULL,
       }
       select[tmp.id < 0] <- TRUE
     } else if(keyword == "rhp"){
-      # rhp: Right-half (real(E) > 0)
+      # rhp: Right-half (real(E) >= 0)
       if(class.ret %in% c("zgges", "dgges")){
         tmp.id <- Re(ret$ALPHA / ret$BETA)
       } else if(class.ret %in% c("zgees", "dgees")){
@@ -63,7 +63,7 @@ ordqz <- function(A, B = NULL, cluster = NULL,
       }
       select[tmp.id < 1] <- TRUE
     } else if(keyword == "udo"){
-      # udo: Exterior of unit disk (abs(E) > 1)
+      # udo: Exterior of unit disk (abs(E) >= 1)
       if(class.ret %in% c("zgges", "dgges")){
         tmp.id <- Mod(ret$ALPHA / ret$BETA)
       } else if(class.ret %in% c("zgees", "dgees")){
@@ -71,7 +71,7 @@ ordqz <- function(A, B = NULL, cluster = NULL,
       }
       select[tmp.id >= 1] <- TRUE
     } else if(keyword == "lhp.fo"){
-      # lhp: Left-half (real(E) < 0)
+      # lhp.fo: Left-half (real(E) < 0) and finite only
       if(class.ret %in% c("zgges", "dgges")){
         tmp.id <- Re(ret$ALPHA / ret$BETA)
       } else if(class.ret %in% c("zgees", "dgees")){
@@ -79,7 +79,7 @@ ordqz <- function(A, B = NULL, cluster = NULL,
       }
       select[tmp.id < 0 & is.finite(tmp.id)] <- TRUE
     } else if(keyword == "rhp.fo"){
-      # rhp: Right-half (real(E) > 0)
+      # rhp.fo: Right-half (real(E) >= 0) and finite only
       if(class.ret %in% c("zgges", "dgges")){
         tmp.id <- Re(ret$ALPHA / ret$BETA)
       } else if(class.ret %in% c("zgees", "dgees")){
@@ -87,7 +87,7 @@ ordqz <- function(A, B = NULL, cluster = NULL,
       }
       select[tmp.id >= 0 & is.finite(tmp.id)] <- TRUE
     } else if(keyword == "udi.fo"){
-      # udi: Interior of unit disk (abs(E) < 1)
+      # udi.fo: Interior of unit disk (abs(E) < 1) and finite only
       if(class.ret %in% c("zgges", "dgges")){
         tmp.id <- Mod(ret$ALPHA / ret$BETA)
       } else if(class.ret %in% c("zgees", "dgees")){
@@ -95,7 +95,7 @@ ordqz <- function(A, B = NULL, cluster = NULL,
       }
       select[tmp.id < 1 & is.finite(tmp.id)] <- TRUE
     } else if(keyword == "udo.fo"){
-      # udo: Exterior of unit disk (abs(E) > 1)
+      # udo.fo: Exterior of unit disk (abs(E) >= 1) and finite only
       if(class.ret %in% c("zgges", "dgges")){
         tmp.id <- Mod(ret$ALPHA / ret$BETA)
       } else if(class.ret %in% c("zgees", "dgees")){
