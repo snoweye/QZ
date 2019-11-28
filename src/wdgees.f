@@ -1,7 +1,7 @@
       SUBROUTINE WDGEES( IWRAP, SELECT, N, A, LDA, SDIM, WR, WI,
      $                  VS, LDVS, WORK, LWORK, IBWORK, INFO )
 *     .. Scalar Arguments ..
-      INTEGER            IWRAP
+      INTEGER            IWRAP, I
       INTEGER            INFO, LDA, LDVS, LWORK, N, SDIM
 *     .. Array Arguments ..
       INTEGER            IBWORK( * )

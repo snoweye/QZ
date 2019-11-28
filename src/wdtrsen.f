@@ -1,12 +1,12 @@
       SUBROUTINE WDTRSEN( IWRAP, ISELECT, N, T, LDT, Q, LDQ, WR, WI,
      $                   M, S, SEP, WORK, LWORK, IWORK, LIWORK, INFO )
 *     .. Scalar Arguments ..
-      INTEGER            IWRAP
+      INTEGER            IWRAP, I
       INTEGER            INFO, LDQ, LDT, LIWORK, LWORK, M, N
       DOUBLE PRECISION   S, SEP
 *     ..
 *     .. Array Arguments ..
-      INTEGER            I, ISELECT( * )
+      INTEGER            ISELECT( * )
       LOGICAL            SELECT( N )
       INTEGER            IWORK( * )
       DOUBLE PRECISION   Q( LDQ, * ), T( LDT, * ), WI( * ), WORK( * ),

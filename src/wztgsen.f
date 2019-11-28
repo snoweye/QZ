@@ -3,14 +3,14 @@
      $                   ALPHA, BETA, Q, LDQ, Z, LDZ, M, PL, PR, DIF,
      $                   WORK, LWORK, IWORK, LIWORK, INFO )
 *     .. Scalar Arguments ..
-      INTEGER            IWANTQ, IWANTZ
+      INTEGER            IWANTQ, IWANTZ, I
       LOGICAL            WANTQ, WANTZ
       INTEGER            IJOB, INFO, LDA, LDB, LDQ, LDZ, LIWORK, LWORK,
      $                   M, N
       DOUBLE PRECISION   PL, PR
 *     ..
 *     .. Array Arguments ..
-      INTEGER            I, ISELECT( * )
+      INTEGER            ISELECT( * )
       LOGICAL            SELECT( N )
       INTEGER            IWORK( * )
       DOUBLE PRECISION   DIF( * )

@@ -2,7 +2,7 @@
      $                  SDIM, ALPHAR, ALPHAI, BETA, VSL, LDVSL, VSR,
      $                  LDVSR, WORK, LWORK, IBWORK, INFO )
 *     .. Scalar Arguments ..
-      INTEGER            IWRAP
+      INTEGER            IWRAP, I
       INTEGER            INFO, LDA, LDB, LDVSL, LDVSR, LWORK, N, SDIM
 *     .. Array Arguments ..
       INTEGER            IBWORK( * )

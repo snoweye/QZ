@@ -1,12 +1,12 @@
       SUBROUTINE WZTRSEN( IWRAP, ISELECT, N, T, LDT, Q, LDQ, W, M, S,
      $                   SEP, WORK, LWORK, INFO )
 *     .. Scalar Arguments ..
-      INTEGER            IWRAP
+      INTEGER            IWRAP, I
       INTEGER            INFO, LDQ, LDT, LWORK, M, N
       DOUBLE PRECISION   S, SEP
 *     ..
 *     .. Array Arguments ..
-      INTEGER            I, ISELECT( * )
+      INTEGER            ISELECT( * )
       LOGICAL            SELECT( N )
       COMPLEX*16         Q( LDQ, * ), T( LDT, * ), W( * ), WORK( * )
 *     ..
