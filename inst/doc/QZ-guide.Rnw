@@ -1,6 +1,6 @@
 %\VignetteIndexEntry{QZ-guide}
 
-\documentclass[article,shortnames,nojss]{QZ-include/jss}
+\documentclass[article,shortnames,nojss]{jss}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -62,8 +62,8 @@ pbdR Core Team \\
 
 %% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
 \input{./QZ-include/00-preamble}
+\input{./QZ-include/my_jss.cls}
 
 \begin{document}
 
