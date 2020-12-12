@@ -1,7 +1,7 @@
 ### Three examples.
 
 exA1 <- list(
-  description = "http://www.nag.com/numeric/fl/nagdoc_fl22/xhtml/F08/f08pnf.xml",
+  description = "https://www.nag.com/numeric/fl/nagdoc_fl22/xhtml/F08/f08pnf.xml",
   A = matrix(c(-3.97 -5.04i, -4.11 +3.70i, -0.34 +1.01i, 1.29 -0.86i,
                 0.34 -1.50i,  1.52 -0.43i,  1.88 -5.38i, 3.36 +0.65i,
                 3.31 -3.85i,  2.50 +3.45i,  0.88 -1.08i, 0.64 -1.48i,
@@ -10,7 +10,7 @@ exA1 <- list(
 )
 
 exA2 <- list(
-  description = "http://www.nag.com/numeric/fl/nagdoc_fl22/xhtml/F08/f08paf.xml",
+  description = "https://www.nag.com/numeric/fl/nagdoc_fl22/xhtml/F08/f08paf.xml",
   A = matrix(c( 0.35,  0.45, -0.14, -0.17,
                 0.09,  0.07, -0.54,  0.35,
                -0.44, -0.33, -0.03,  0.17,
@@ -19,7 +19,7 @@ exA2 <- list(
 )
 
 exA3 <- list(
-  description = "http://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/F08/f08quf.xml",
+  description = "https://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/F08/f08quf.xml",
   T = matrix(c(-6.0004 -6.9999i,  0.3637 -0.3656i, -0.1880 +0.4787i,  0.8785 -0.2539i,
                 0.0000 +0.0000i, -5.0000 +2.0060i, -0.0307 -0.7217i, -0.2290 +0.1313i,
                 0.0000 +0.0000i,  0.0000 +0.0000i,  7.9982 -0.9964i,  0.9357 +0.5359i,
@@ -33,7 +33,7 @@ exA3 <- list(
 )
 
 exA4 <- list(
-  description = "http://www.nag.com/numeric/fl/nagdoc_fl22/xhtml/F08/f08qgf.xml",
+  description = "https://www.nag.com/numeric/fl/nagdoc_fl22/xhtml/F08/f08qgf.xml",
   T = matrix(c(0.7995, -0.1144,  0.0060,  0.0336,
                0.0000, -0.0994,  0.2478,  0.3474,
                0.0000, -0.6483, -0.0994,  0.2026,

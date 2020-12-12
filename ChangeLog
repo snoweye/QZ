@@ -1,5 +1,6 @@
 2020-12-12: Ver. 0.2-1
   * Use R's jss.* version.
+  * Change http to https.
 
 2019-11-27: Ver. 0.2-0
   * Explicitly specify I as an integer in fortran code.

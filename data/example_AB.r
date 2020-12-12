@@ -1,7 +1,7 @@
 ### Three examples.
 
 exAB1 <- list(
-  description = "http://www.nag.com/lapack-ex/node124.html",
+  description = "https://www.nag.com/lapack-ex/node124.html",
   A = matrix(c(-21.10 -22.50i, 53.50 -50.50i, -34.50 +127.50i,   7.50  +0.50i,
                 -0.46  -7.78i, -3.50 -37.50i, -15.50  +58.50i, -10.50  -1.50i,
                  4.30  -5.50i, 39.70 -17.10i, -68.50  +12.50i,  -7.50  -3.50i,
@@ -15,7 +15,7 @@ exAB1 <- list(
 )
 
 exAB2 <- list(
-  description = "http://www.nag.com/lapack-ex/node119.html",
+  description = "https://www.nag.com/lapack-ex/node119.html",
   A = matrix(c(3.9, 12.5, -34.5, -0.5,
                4.3, 21.5, -47.5,  7.5,
                4.3, 21.5, -43.5,  3.5,
@@ -29,7 +29,7 @@ exAB2 <- list(
 )
 
 exAB3 <- list(
-  description = "http://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/F08/f08yuf.xml",
+  description = "https://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/F08/f08yuf.xml",
   S = matrix(c(4.0 +4.0i, 1.0 +1.0i, 1.0 +1.0i, 2.0 -1.0i,
                0.0 +0.0i, 2.0 +1.0i, 1.0 +1.0i, 1.0 +1.0i,
                0.0 +0.0i, 0.0 +0.0i, 2.0 -1.0i, 1.0 +1.0i,
@@ -45,7 +45,7 @@ exAB3 <- list(
 )
 
 exAB4 <- list(
-  description = "http://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/F08/f08ygf.xml",
+  description = "https://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/F08/f08ygf.xml",
   S = matrix(c(4.0, 1.0, 1.0, 2.0,
                0.0, 3.0, 4.0, 1.0,
                0.0, 1.0, 3.0, 1.0,
