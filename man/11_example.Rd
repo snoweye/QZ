@@ -25,13 +25,13 @@
   Examples   \tab Source \cr
   \code{exAB1} \tab \url{https://www.nag.com/lapack-ex/node124.html} \cr
   \code{exAB2} \tab \url{https://www.nag.com/lapack-ex/node119.html} \cr
-  \code{exAB3} \tab \url{https://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/F08/f08yuf.xml} \cr
-  \code{exAB4} \tab \url{https://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/F08/f08ygf.xml} \cr
+  \code{exAB3} \tab \url{https://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/f08/f08yuf.xml} \cr
+  \code{exAB4} \tab \url{https://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/f08/f08ygf.xml} \cr
                \tab \cr
   \code{exA1}  \tab \url{https://www.nag.com/lapack-ex/node94.html} \cr
   \code{exA2}  \tab \url{https://www.nag.com/lapack-ex/node89.html} \cr
-  \code{exA3}  \tab \url{https://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/F08/f08quf.xml} \cr
-  \code{exA4}  \tab \url{https://www.nag.com/numeric/fl/nagdoc_fl22/xhtml/F08/f08qgf.xml} \cr
+  \code{exA3}  \tab \url{https://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/f08/f08quf.xml} \cr
+  \code{exA4}  \tab \url{https://www.nag.com/numeric/fl/nagdoc_fl22/xhtml/f08/f08qgf.xml} \cr
 }
 
   The elements of dataset are (if any)
