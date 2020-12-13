@@ -54,9 +54,9 @@
   Anderson, E., et al. (1999) \emph{LAPACK User's Guide,}
   3rd edition, SIAM, Philadelphia.
 
-  \url{http://www.netlib.org/lapack/double/dgees.f}
+  \url{https://www.netlib.org/lapack/double/dgees.f}
 
-  \url{http://en.wikipedia.org/wiki/Schur_decomposition}
+  \url{https://en.wikipedia.org/wiki/Schur_decomposition}
 }
 \author{
   Wei-Chen Chen \email{wccsnow@gmail.com}
@@ -68,7 +68,7 @@
 % \dontrun{
 library(QZ, quiet = TRUE)
 
-### http://www.nag.com/lapack-ex/node89.html
+### https://www.nag.com/lapack-ex/node89.html
 A <- exA2$A
 ret <- qz.dgees(A)
 

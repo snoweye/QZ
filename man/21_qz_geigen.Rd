@@ -30,7 +30,7 @@
   Anderson, E., et al. (1999) \emph{LAPACK User's Guide,}
   3rd edition, SIAM, Philadelphia.
 
-  \url{http://en.wikipedia.org/wiki/Schur_decomposition}
+  \url{https://en.wikipedia.org/wiki/Schur_decomposition}
 }
 \author{
   Wei-Chen Chen \email{wccsnow@gmail.com}
@@ -42,16 +42,16 @@
 % \dontrun{
 library(QZ, quiet = TRUE)
 
-### http://www.nag.com/lapack-ex/node122.html
+### https://www.nag.com/lapack-ex/node122.html
 (ret <- qz.geigen(exAB1$A, exAB1$B))
 
-### http://www.nag.com/lapack-ex/node117.html
+### https://www.nag.com/lapack-ex/node117.html
 (ret <- qz.geigen(exAB2$A, exAB2$B))
 
-### http://www.nag.com/lapack-ex/node92.html
+### https://www.nag.com/lapack-ex/node92.html
 (ret <- qz.geigen(exA1$A))
 
-### http://www.nag.com/lapack-ex/node87.html
+### https://www.nag.com/lapack-ex/node87.html
 (ret <- qz.geigen(exA2$A))
 % }
 }

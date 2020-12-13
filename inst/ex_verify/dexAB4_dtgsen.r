@@ -1,6 +1,6 @@
 library(QZ, quiet = TRUE)
 
-### http://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/F08/f08ygf.xml
+### https://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/F08/f08ygf.xml
 S <- exAB4$S
 T <- exAB4$T
 Q <- exAB4$Q

@@ -1,6 +1,6 @@
 library(QZ, quiet = TRUE)
 
-### http://www.nag.com/lapack-ex/node89.html
+### https://www.nag.com/lapack-ex/node89.html
 A <- exA2$A
 ret <- qz.dgees(A)
 

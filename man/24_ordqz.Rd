@@ -46,7 +46,7 @@
   Anderson, E., et al. (1999) \emph{LAPACK User's Guide,}
   3rd edition, SIAM, Philadelphia.
 
-  \url{http://en.wikipedia.org/wiki/Schur_decomposition}
+  \url{https://en.wikipedia.org/wiki/Schur_decomposition}
 }
 \author{
   Wei-Chen Chen \email{wccsnow@gmail.com}

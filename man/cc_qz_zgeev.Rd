@@ -50,9 +50,9 @@
   Anderson, E., et al. (1999) \emph{LAPACK User's Guide,}
   3rd edition, SIAM, Philadelphia.
 
-  \url{http://www.netlib.org/lapack/complex16/zgeev.f}
+  \url{https://www.netlib.org/lapack/complex16/zgeev.f}
 
-  \url{http://en.wikipedia.org/wiki/Schur_decomposition}
+  \url{https://en.wikipedia.org/wiki/Schur_decomposition}
 }
 \author{
   Wei-Chen Chen \email{wccsnow@gmail.com}
@@ -64,7 +64,7 @@
 % \dontrun{
 library(QZ, quiet = TRUE)
 
-### http://www.nag.com/lapack-ex/node92.html
+### https://www.nag.com/lapack-ex/node92.html
 A <- exA1$A
 ret <- qz.zgeev(A)
 

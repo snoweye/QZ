@@ -5,8 +5,8 @@ citEntry(
   title = "{QZ}: {QZ} Decomposition",
   author = personList(as.person("Wei-Chen Chen")),
   year = "2013",
-  note = "{R} Package, URL http://cran.r-project.org/package=QZ",
-  textVersion = "Chen, W.-C. (2013) QZ: QZ Decomposition. R Package, URL http://cran.r-project.org/package=QZ",
+  note = "{R} Package, URL https://cran.r-project.org/package=QZ",
+  textVersion = "Chen, W.-C. (2013) QZ: QZ Decomposition. R Package, URL https://cran.r-project.org/package=QZ",
   key = "Chen2013QZpackage"
 )
 
@@ -15,8 +15,8 @@ citEntry(
   title = "A Quick Guide for the {QZ} Package",
   author = personList(as.person("Wei-Chen Chen")),
   year = "2019",
-  note = "{R} Vignette, URL http://cran.r-project.org/package=QZ",
-  textVersion = "Chen, W.-C. (2019) A Quick Guide for the QZ Package. R Vignette, URL http://cran.r-project.org/package=QZ",
+  note = "{R} Vignette, URL https://cran.r-project.org/package=QZ",
+  textVersion = "Chen, W.-C. (2019) A Quick Guide for the QZ Package. R Vignette, URL https://cran.r-project.org/package=QZ",
   key = "Chen2019QZvignette"
 )
 

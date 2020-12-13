@@ -36,7 +36,7 @@
   Anderson, E., et al. (1999) \emph{LAPACK User's Guide,}
   3rd edition, SIAM, Philadelphia.
 
-  \url{http://en.wikipedia.org/wiki/Schur_decomposition}
+  \url{https://en.wikipedia.org/wiki/Schur_decomposition}
 }
 \author{
   Wei-Chen Chen \email{wccsnow@gmail.com}
@@ -48,16 +48,16 @@
 % \dontrun{
 library(QZ, quiet = TRUE)
 
-### http://www.nag.com/lapack-ex/node124.html
+### https://www.nag.com/lapack-ex/node124.html
 (ret <- qz(exAB1$A, exAB1$B))
 
-### http://www.nag.com/lapack-ex/node119.html
+### https://www.nag.com/lapack-ex/node119.html
 (ret <- qz(exAB2$A, exAB2$B))
 
-### http://www.nag.com/lapack-ex/node94.html
+### https://www.nag.com/lapack-ex/node94.html
 (ret <- qz(exA1$A))
 
-### http://www.nag.com/lapack-ex/node89.html
+### https://www.nag.com/lapack-ex/node89.html
 (ret <- qz(exA2$A))
 
 # Reordering eigenvalues
