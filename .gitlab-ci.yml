@@ -1,12 +1,12 @@
 image: r-base
 
+stages:
+  - test
+
 test:
+  stage: test
   script:
     - R -e 'install.packages("fda"))'
     - R CMD build . --no-build-vignettes --no-manual --no-resave-data
+    #- R CMD INSTALL *.tar.gz
     - R CMD check *.tar.gz --as-cran --no-build-vignettes --no-manual --no-resave-data
-
-notifications:
-  email:
-    on_success: no
-    on_failure: no
