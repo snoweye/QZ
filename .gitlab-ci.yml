@@ -1,30 +1,12 @@
-language: R
-sudo: required
-warnings_are_errors: true
+image: r-base
 
-branches:
-  only:
-    - master
-
-### For Linux
-os:
-  - linux
-
-env:
-  global:
-    - CRAN: https://cran.rstudio.com
-    - _R_CHECK_FORCE_SUGGESTS_=FALSE
-
-before_install:
-  - sudo apt-get update -q
-
-r_packages:
-  - fda
-
-r_check_args: --no-build-vignettes --no-manual
+test:
+  script:
+    - R -e 'install.packages("fda"))'
+    - R CMD build . --no-build-vignettes --no-manual --no-resave-data
+    - R CMD check *.tar.gz --as-cran --no-build-vignettes --no-manual --no-resave-data
 
 notifications:
   email:
     on_success: no
     on_failure: no
-
