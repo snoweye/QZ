@@ -6,7 +6,7 @@ stages:
 test:
   stage: test
   script:
-    - R -e 'install.packages("fda"))'
+    - R -e 'install.packages("fda")'
     - R CMD build --no-build-vignettes --no-manual --no-resave-data .
     - R CMD INSTALL QZ*.tar.gz
     #- R CMD check *.tar.gz --as-cran --no-build-vignettes --no-manual --no-resave-data
