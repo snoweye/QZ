@@ -1,11 +1,290 @@
+*> \brief \b ZHGEQZ
+*
+*  =========== DOCUMENTATION ===========
+*
+* Online html documentation available at
+*            http://www.netlib.org/lapack/explore-html/
+*
+*> \htmlonly
+*> Download ZHGEQZ + dependencies
+*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.tgz?format=tgz&filename=/lapack/lapack_routine/zhgeqz.f">
+*> [TGZ]</a>
+*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.zip?format=zip&filename=/lapack/lapack_routine/zhgeqz.f">
+*> [ZIP]</a>
+*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.txt?format=txt&filename=/lapack/lapack_routine/zhgeqz.f">
+*> [TXT]</a>
+*> \endhtmlonly
+*
+*  Definition:
+*  ===========
+*
+*       SUBROUTINE ZHGEQZ( JOB, COMPQ, COMPZ, N, ILO, IHI, H, LDH, T, LDT,
+*                          ALPHA, BETA, Q, LDQ, Z, LDZ, WORK, LWORK,
+*                          RWORK, INFO )
+*
+*       .. Scalar Arguments ..
+*       CHARACTER          COMPQ, COMPZ, JOB
+*       INTEGER            IHI, ILO, INFO, LDH, LDQ, LDT, LDZ, LWORK, N
+*       ..
+*       .. Array Arguments ..
+*       DOUBLE PRECISION   RWORK( * )
+*       COMPLEX*16         ALPHA( * ), BETA( * ), H( LDH, * ),
+*      $                   Q( LDQ, * ), T( LDT, * ), WORK( * ),
+*      $                   Z( LDZ, * )
+*       ..
+*
+*
+*> \par Purpose:
+*  =============
+*>
+*> \verbatim
+*>
+*> ZHGEQZ computes the eigenvalues of a complex matrix pair (H,T),
+*> where H is an upper Hessenberg matrix and T is upper triangular,
+*> using the single-shift QZ method.
+*> Matrix pairs of this type are produced by the reduction to
+*> generalized upper Hessenberg form of a complex matrix pair (A,B):
+*>
+*>    A = Q1*H*Z1**H,  B = Q1*T*Z1**H,
+*>
+*> as computed by ZGGHRD.
+*>
+*> If JOB='S', then the Hessenberg-triangular pair (H,T) is
+*> also reduced to generalized Schur form,
+*>
+*>    H = Q*S*Z**H,  T = Q*P*Z**H,
+*>
+*> where Q and Z are unitary matrices and S and P are upper triangular.
+*>
+*> Optionally, the unitary matrix Q from the generalized Schur
+*> factorization may be postmultiplied into an input matrix Q1, and the
+*> unitary matrix Z may be postmultiplied into an input matrix Z1.
+*> If Q1 and Z1 are the unitary matrices from ZGGHRD that reduced
+*> the matrix pair (A,B) to generalized Hessenberg form, then the output
+*> matrices Q1*Q and Z1*Z are the unitary factors from the generalized
+*> Schur factorization of (A,B):
+*>
+*>    A = (Q1*Q)*S*(Z1*Z)**H,  B = (Q1*Q)*P*(Z1*Z)**H.
+*>
+*> To avoid overflow, eigenvalues of the matrix pair (H,T)
+*> (equivalently, of (A,B)) are computed as a pair of complex values
+*> (alpha,beta).  If beta is nonzero, lambda = alpha / beta is an
+*> eigenvalue of the generalized nonsymmetric eigenvalue problem (GNEP)
+*>    A*x = lambda*B*x
+*> and if alpha is nonzero, mu = beta / alpha is an eigenvalue of the
+*> alternate form of the GNEP
+*>    mu*A*y = B*y.
+*> The values of alpha and beta for the i-th eigenvalue can be read
+*> directly from the generalized Schur form:  alpha = S(i,i),
+*> beta = P(i,i).
+*>
+*> Ref: C.B. Moler & G.W. Stewart, "An Algorithm for Generalized Matrix
+*>      Eigenvalue Problems", SIAM J. Numer. Anal., 10(1973),
+*>      pp. 241--256.
+*> \endverbatim
+*
+*  Arguments:
+*  ==========
+*
+*> \param[in] JOB
+*> \verbatim
+*>          JOB is CHARACTER*1
+*>          = 'E': Compute eigenvalues only;
+*>          = 'S': Computer eigenvalues and the Schur form.
+*> \endverbatim
+*>
+*> \param[in] COMPQ
+*> \verbatim
+*>          COMPQ is CHARACTER*1
+*>          = 'N': Left Schur vectors (Q) are not computed;
+*>          = 'I': Q is initialized to the unit matrix and the matrix Q
+*>                 of left Schur vectors of (H,T) is returned;
+*>          = 'V': Q must contain a unitary matrix Q1 on entry and
+*>                 the product Q1*Q is returned.
+*> \endverbatim
+*>
+*> \param[in] COMPZ
+*> \verbatim
+*>          COMPZ is CHARACTER*1
+*>          = 'N': Right Schur vectors (Z) are not computed;
+*>          = 'I': Q is initialized to the unit matrix and the matrix Z
+*>                 of right Schur vectors of (H,T) is returned;
+*>          = 'V': Z must contain a unitary matrix Z1 on entry and
+*>                 the product Z1*Z is returned.
+*> \endverbatim
+*>
+*> \param[in] N
+*> \verbatim
+*>          N is INTEGER
+*>          The order of the matrices H, T, Q, and Z.  N >= 0.
+*> \endverbatim
+*>
+*> \param[in] ILO
+*> \verbatim
+*>          ILO is INTEGER
+*> \endverbatim
+*>
+*> \param[in] IHI
+*> \verbatim
+*>          IHI is INTEGER
+*>          ILO and IHI mark the rows and columns of H which are in
+*>          Hessenberg form.  It is assumed that A is already upper
+*>          triangular in rows and columns 1:ILO-1 and IHI+1:N.
+*>          If N > 0, 1 <= ILO <= IHI <= N; if N = 0, ILO=1 and IHI=0.
+*> \endverbatim
+*>
+*> \param[in,out] H
+*> \verbatim
+*>          H is COMPLEX*16 array, dimension (LDH, N)
+*>          On entry, the N-by-N upper Hessenberg matrix H.
+*>          On exit, if JOB = 'S', H contains the upper triangular
+*>          matrix S from the generalized Schur factorization.
+*>          If JOB = 'E', the diagonal of H matches that of S, but
+*>          the rest of H is unspecified.
+*> \endverbatim
+*>
+*> \param[in] LDH
+*> \verbatim
+*>          LDH is INTEGER
+*>          The leading dimension of the array H.  LDH >= max( 1, N ).
+*> \endverbatim
+*>
+*> \param[in,out] T
+*> \verbatim
+*>          T is COMPLEX*16 array, dimension (LDT, N)
+*>          On entry, the N-by-N upper triangular matrix T.
+*>          On exit, if JOB = 'S', T contains the upper triangular
+*>          matrix P from the generalized Schur factorization.
+*>          If JOB = 'E', the diagonal of T matches that of P, but
+*>          the rest of T is unspecified.
+*> \endverbatim
+*>
+*> \param[in] LDT
+*> \verbatim
+*>          LDT is INTEGER
+*>          The leading dimension of the array T.  LDT >= max( 1, N ).
+*> \endverbatim
+*>
+*> \param[out] ALPHA
+*> \verbatim
+*>          ALPHA is COMPLEX*16 array, dimension (N)
+*>          The complex scalars alpha that define the eigenvalues of
+*>          GNEP.  ALPHA(i) = S(i,i) in the generalized Schur
+*>          factorization.
+*> \endverbatim
+*>
+*> \param[out] BETA
+*> \verbatim
+*>          BETA is COMPLEX*16 array, dimension (N)
+*>          The real non-negative scalars beta that define the
+*>          eigenvalues of GNEP.  BETA(i) = P(i,i) in the generalized
+*>          Schur factorization.
+*>
+*>          Together, the quantities alpha = ALPHA(j) and beta = BETA(j)
+*>          represent the j-th eigenvalue of the matrix pair (A,B), in
+*>          one of the forms lambda = alpha/beta or mu = beta/alpha.
+*>          Since either lambda or mu may overflow, they should not,
+*>          in general, be computed.
+*> \endverbatim
+*>
+*> \param[in,out] Q
+*> \verbatim
+*>          Q is COMPLEX*16 array, dimension (LDQ, N)
+*>          On entry, if COMPQ = 'V', the unitary matrix Q1 used in the
+*>          reduction of (A,B) to generalized Hessenberg form.
+*>          On exit, if COMPQ = 'I', the unitary matrix of left Schur
+*>          vectors of (H,T), and if COMPQ = 'V', the unitary matrix of
+*>          left Schur vectors of (A,B).
+*>          Not referenced if COMPQ = 'N'.
+*> \endverbatim
+*>
+*> \param[in] LDQ
+*> \verbatim
+*>          LDQ is INTEGER
+*>          The leading dimension of the array Q.  LDQ >= 1.
+*>          If COMPQ='V' or 'I', then LDQ >= N.
+*> \endverbatim
+*>
+*> \param[in,out] Z
+*> \verbatim
+*>          Z is COMPLEX*16 array, dimension (LDZ, N)
+*>          On entry, if COMPZ = 'V', the unitary matrix Z1 used in the
+*>          reduction of (A,B) to generalized Hessenberg form.
+*>          On exit, if COMPZ = 'I', the unitary matrix of right Schur
+*>          vectors of (H,T), and if COMPZ = 'V', the unitary matrix of
+*>          right Schur vectors of (A,B).
+*>          Not referenced if COMPZ = 'N'.
+*> \endverbatim
+*>
+*> \param[in] LDZ
+*> \verbatim
+*>          LDZ is INTEGER
+*>          The leading dimension of the array Z.  LDZ >= 1.
+*>          If COMPZ='V' or 'I', then LDZ >= N.
+*> \endverbatim
+*>
+*> \param[out] WORK
+*> \verbatim
+*>          WORK is COMPLEX*16 array, dimension (MAX(1,LWORK))
+*>          On exit, if INFO >= 0, WORK(1) returns the optimal LWORK.
+*> \endverbatim
+*>
+*> \param[in] LWORK
+*> \verbatim
+*>          LWORK is INTEGER
+*>          The dimension of the array WORK.  LWORK >= max(1,N).
+*>
+*>          If LWORK = -1, then a workspace query is assumed; the routine
+*>          only calculates the optimal size of the WORK array, returns
+*>          this value as the first entry of the WORK array, and no error
+*>          message related to LWORK is issued by XERBLA.
+*> \endverbatim
+*>
+*> \param[out] RWORK
+*> \verbatim
+*>          RWORK is DOUBLE PRECISION array, dimension (N)
+*> \endverbatim
+*>
+*> \param[out] INFO
+*> \verbatim
+*>          INFO is INTEGER
+*>          = 0: successful exit
+*>          < 0: if INFO = -i, the i-th argument had an illegal value
+*>          = 1,...,N: the QZ iteration did not converge.  (H,T) is not
+*>                     in Schur form, but ALPHA(i) and BETA(i),
+*>                     i=INFO+1,...,N should be correct.
+*>          = N+1,...,2*N: the shift calculation failed.  (H,T) is not
+*>                     in Schur form, but ALPHA(i) and BETA(i),
+*>                     i=INFO-N+1,...,N should be correct.
+*> \endverbatim
+*
+*  Authors:
+*  ========
+*
+*> \author Univ. of Tennessee
+*> \author Univ. of California Berkeley
+*> \author Univ. of Colorado Denver
+*> \author NAG Ltd.
+*
+*> \ingroup complex16GEcomputational
+*
+*> \par Further Details:
+*  =====================
+*>
+*> \verbatim
+*>
+*>  We assume that complex ABS works as long as its value is less than
+*>  overflow.
+*> \endverbatim
+*>
+*  =====================================================================
       SUBROUTINE ZHGEQZ( JOB, COMPQ, COMPZ, N, ILO, IHI, H, LDH, T, LDT,
      $                   ALPHA, BETA, Q, LDQ, Z, LDZ, WORK, LWORK,
      $                   RWORK, INFO )
 *
-*  -- LAPACK routine (version 3.2) --
+*  -- LAPACK computational routine --
 *  -- LAPACK is a software package provided by Univ. of Tennessee,    --
 *  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..--
-*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          COMPQ, COMPZ, JOB
@@ -17,172 +296,6 @@
      $                   Q( LDQ, * ), T( LDT, * ), WORK( * ),
      $                   Z( LDZ, * )
 *     ..
-*
-*  Purpose
-*  =======
-*
-*  ZHGEQZ computes the eigenvalues of a complex matrix pair (H,T),
-*  where H is an upper Hessenberg matrix and T is upper triangular,
-*  using the single-shift QZ method.
-*  Matrix pairs of this type are produced by the reduction to
-*  generalized upper Hessenberg form of a complex matrix pair (A,B):
-*  
-*     A = Q1*H*Z1**H,  B = Q1*T*Z1**H,
-*  
-*  as computed by ZGGHRD.
-*  
-*  If JOB='S', then the Hessenberg-triangular pair (H,T) is
-*  also reduced to generalized Schur form,
-*  
-*     H = Q*S*Z**H,  T = Q*P*Z**H,
-*  
-*  where Q and Z are unitary matrices and S and P are upper triangular.
-*  
-*  Optionally, the unitary matrix Q from the generalized Schur
-*  factorization may be postmultiplied into an input matrix Q1, and the
-*  unitary matrix Z may be postmultiplied into an input matrix Z1.
-*  If Q1 and Z1 are the unitary matrices from ZGGHRD that reduced
-*  the matrix pair (A,B) to generalized Hessenberg form, then the output
-*  matrices Q1*Q and Z1*Z are the unitary factors from the generalized
-*  Schur factorization of (A,B):
-*  
-*     A = (Q1*Q)*S*(Z1*Z)**H,  B = (Q1*Q)*P*(Z1*Z)**H.
-*  
-*  To avoid overflow, eigenvalues of the matrix pair (H,T)
-*  (equivalently, of (A,B)) are computed as a pair of complex values
-*  (alpha,beta).  If beta is nonzero, lambda = alpha / beta is an
-*  eigenvalue of the generalized nonsymmetric eigenvalue problem (GNEP)
-*     A*x = lambda*B*x
-*  and if alpha is nonzero, mu = beta / alpha is an eigenvalue of the
-*  alternate form of the GNEP
-*     mu*A*y = B*y.
-*  The values of alpha and beta for the i-th eigenvalue can be read
-*  directly from the generalized Schur form:  alpha = S(i,i),
-*  beta = P(i,i).
-*
-*  Ref: C.B. Moler & G.W. Stewart, "An Algorithm for Generalized Matrix
-*       Eigenvalue Problems", SIAM J. Numer. Anal., 10(1973),
-*       pp. 241--256.
-*
-*  Arguments
-*  =========
-*
-*  JOB     (input) CHARACTER  
-*          = 'E': Compute eigenvalues only;
-*          = 'S': Computer eigenvalues and the Schur form.
-*
-*  COMPQ   (input) CHARACTER  
-*          = 'N': Left Schur vectors (Q) are not computed;
-*          = 'I': Q is initialized to the unit matrix and the matrix Q
-*                 of left Schur vectors of (H,T) is returned;
-*          = 'V': Q must contain a unitary matrix Q1 on entry and
-*                 the product Q1*Q is returned.
-*
-*  COMPZ   (input) CHARACTER  
-*          = 'N': Right Schur vectors (Z) are not computed;
-*          = 'I': Q is initialized to the unit matrix and the matrix Z
-*                 of right Schur vectors of (H,T) is returned;
-*          = 'V': Z must contain a unitary matrix Z1 on entry and
-*                 the product Z1*Z is returned.
-*
-*  N       (input) INTEGER
-*          The order of the matrices H, T, Q, and Z.  N >= 0.
-*
-*  ILO     (input) INTEGER
-*  IHI     (input) INTEGER
-*          ILO and IHI mark the rows and columns of H which are in
-*          Hessenberg form.  It is assumed that A is already upper
-*          triangular in rows and columns 1:ILO-1 and IHI+1:N.
-*          If N > 0, 1 <= ILO <= IHI <= N; if N = 0, ILO=1 and IHI=0.
-*
-*  H       (input/output) COMPLEX*16 array, dimension (LDH, N)
-*          On entry, the N-by-N upper Hessenberg matrix H.
-*          On exit, if JOB = 'S', H contains the upper triangular
-*          matrix S from the generalized Schur factorization.
-*          If JOB = 'E', the diagonal of H matches that of S, but
-*          the rest of H is unspecified.
-*
-*  LDH     (input) INTEGER
-*          The leading dimension of the array H.  LDH >= max( 1, N ).
-*
-*  T       (input/output) COMPLEX*16 array, dimension (LDT, N)
-*          On entry, the N-by-N upper triangular matrix T.
-*          On exit, if JOB = 'S', T contains the upper triangular
-*          matrix P from the generalized Schur factorization.
-*          If JOB = 'E', the diagonal of T matches that of P, but
-*          the rest of T is unspecified.
-*
-*  LDT     (input) INTEGER
-*          The leading dimension of the array T.  LDT >= max( 1, N ).
-*
-*  ALPHA   (output) COMPLEX*16 array, dimension (N)
-*          The complex scalars alpha that define the eigenvalues of
-*          GNEP.  ALPHA(i) = S(i,i) in the generalized Schur
-*          factorization.
-*
-*  BETA    (output) COMPLEX*16 array, dimension (N)
-*          The real non-negative scalars beta that define the
-*          eigenvalues of GNEP.  BETA(i) = P(i,i) in the generalized
-*          Schur factorization.
-*
-*          Together, the quantities alpha = ALPHA(j) and beta = BETA(j)
-*          represent the j-th eigenvalue of the matrix pair (A,B), in
-*          one of the forms lambda = alpha/beta or mu = beta/alpha.
-*          Since either lambda or mu may overflow, they should not,
-*          in general, be computed.
-*
-*  Q       (input/output) COMPLEX*16 array, dimension (LDQ, N)
-*          On entry, if COMPZ = 'V', the unitary matrix Q1 used in the
-*          reduction of (A,B) to generalized Hessenberg form.
-*          On exit, if COMPZ = 'I', the unitary matrix of left Schur
-*          vectors of (H,T), and if COMPZ = 'V', the unitary matrix of
-*          left Schur vectors of (A,B).
-*          Not referenced if COMPZ = 'N'.
-*
-*  LDQ     (input) INTEGER
-*          The leading dimension of the array Q.  LDQ >= 1.
-*          If COMPQ='V' or 'I', then LDQ >= N.
-*
-*  Z       (input/output) COMPLEX*16 array, dimension (LDZ, N)
-*          On entry, if COMPZ = 'V', the unitary matrix Z1 used in the
-*          reduction of (A,B) to generalized Hessenberg form.
-*          On exit, if COMPZ = 'I', the unitary matrix of right Schur
-*          vectors of (H,T), and if COMPZ = 'V', the unitary matrix of
-*          right Schur vectors of (A,B).
-*          Not referenced if COMPZ = 'N'.
-*
-*  LDZ     (input) INTEGER
-*          The leading dimension of the array Z.  LDZ >= 1.
-*          If COMPZ='V' or 'I', then LDZ >= N.
-*
-*  WORK    (workspace/output) COMPLEX*16 array, dimension (MAX(1,LWORK))
-*          On exit, if INFO >= 0, WORK(1) returns the optimal LWORK.
-*
-*  LWORK   (input) INTEGER
-*          The dimension of the array WORK.  LWORK >= max(1,N).
-*
-*          If LWORK = -1, then a workspace query is assumed; the routine
-*          only calculates the optimal size of the WORK array, returns
-*          this value as the first entry of the WORK array, and no error
-*          message related to LWORK is issued by XERBLA.
-*
-*  RWORK   (workspace) DOUBLE PRECISION array, dimension (N)
-*
-*  INFO    (output) INTEGER
-*          = 0: successful exit
-*          < 0: if INFO = -i, the i-th argument had an illegal value
-*          = 1,...,N: the QZ iteration did not converge.  (H,T) is not
-*                     in Schur form, but ALPHA(i) and BETA(i),
-*                     i=INFO+1,...,N should be correct.
-*          = N+1,...,2*N: the shift calculation failed.  (H,T) is not
-*                     in Schur form, but ALPHA(i) and BETA(i),
-*                     i=INFO-N+1,...,N should be correct.
-*
-*  Further Details
-*  ===============
-*
-*  We assume that complex ABS works as long as its value is less than
-*  overflow.
 *
 *  =====================================================================
 *
@@ -203,13 +316,14 @@
       DOUBLE PRECISION   ABSB, ANORM, ASCALE, ATOL, BNORM, BSCALE, BTOL,
      $                   C, SAFMIN, TEMP, TEMP2, TEMPR, ULP
       COMPLEX*16         ABI22, AD11, AD12, AD21, AD22, CTEMP, CTEMP2,
-     $                   CTEMP3, ESHIFT, RTDISC, S, SHIFT, SIGNBC, T1,
-     $                   U12, X
+     $                   CTEMP3, ESHIFT, S, SHIFT, SIGNBC,
+     $                   U12, X, ABI12, Y
 *     ..
 *     .. External Functions ..
+      COMPLEX*16         ZLADIV
       LOGICAL            LSAME
       DOUBLE PRECISION   DLAMCH, ZLANHS
-      EXTERNAL           LSAME, DLAMCH, ZLANHS
+      EXTERNAL           ZLADIV, LSAME, DLAMCH, ZLANHS
 *     ..
 *     .. External Subroutines ..
       EXTERNAL           XERBLA, ZLARTG, ZLASET, ZROT, ZSCAL
@@ -235,6 +349,7 @@
          ILSCHR = .TRUE.
          ISCHUR = 2
       ELSE
+         ILSCHR = .TRUE.
          ISCHUR = 0
       END IF
 *
@@ -248,6 +363,7 @@
          ILQ = .TRUE.
          ICOMPQ = 3
       ELSE
+         ILQ = .TRUE.
          ICOMPQ = 0
       END IF
 *
@@ -261,6 +377,7 @@
          ILZ = .TRUE.
          ICOMPZ = 3
       ELSE
+         ILZ = .TRUE.
          ICOMPZ = 0
       END IF
 *
@@ -338,7 +455,7 @@
                CALL ZSCAL( J-1, SIGNBC, T( 1, J ), 1 )
                CALL ZSCAL( J, SIGNBC, H( 1, J ), 1 )
             ELSE
-               H( J, J ) = H( J, J )*SIGNBC
+               CALL ZSCAL( 1, SIGNBC, H( J, J ), 1 )
             END IF
             IF( ILZ )
      $         CALL ZSCAL( N, SIGNBC, Z( 1, J ), 1 )
@@ -399,13 +516,17 @@
          IF( ILAST.EQ.ILO ) THEN
             GO TO 60
          ELSE
-            IF( ABS1( H( ILAST, ILAST-1 ) ).LE.ATOL ) THEN
+            IF( ABS1( H( ILAST, ILAST-1 ) ).LE.MAX( SAFMIN, ULP*( 
+     $         ABS1( H( ILAST, ILAST ) ) + ABS1( H( ILAST-1, ILAST-1 ) 
+     $         ) ) ) ) THEN
                H( ILAST, ILAST-1 ) = CZERO
                GO TO 60
             END IF
          END IF
 *
-         IF( ABS( T( ILAST, ILAST ) ).LE.BTOL ) THEN
+         IF( ABS( T( ILAST, ILAST ) ).LE.MAX( SAFMIN, ULP*( 
+     $         ABS( T( ILAST - 1, ILAST ) ) + ABS( T( ILAST-1, ILAST-1 )
+     $          ) ) ) ) THEN
             T( ILAST, ILAST ) = CZERO
             GO TO 50
          END IF
@@ -419,7 +540,9 @@
             IF( J.EQ.ILO ) THEN
                ILAZRO = .TRUE.
             ELSE
-               IF( ABS1( H( J, J-1 ) ).LE.ATOL ) THEN
+               IF( ABS1( H( J, J-1 ) ).LE.MAX( SAFMIN, ULP*( 
+     $            ABS1( H( J, J ) ) + ABS1( H( J-1, J-1 ) ) 
+     $            ) ) ) THEN
                   H( J, J-1 ) = CZERO
                   ILAZRO = .TRUE.
                ELSE
@@ -429,7 +552,10 @@
 *
 *           Test 2: for T(j,j)=0
 *
-            IF( ABS( T( J, J ) ).LT.BTOL ) THEN
+            TEMP = ABS ( T( J, J + 1 ) )
+            IF ( J .GT. ILO )
+     $           TEMP = TEMP + ABS ( T( J - 1, J ) )
+            IF( ABS( T( J, J ) ).LT.MAX( SAFMIN,ULP*TEMP ) ) THEN
                T( J, J ) = CZERO
 *
 *              Test 1a: Check for 2 consecutive small subdiagonals in A
@@ -550,7 +676,7 @@
                CALL ZSCAL( ILAST+1-IFRSTM, SIGNBC, H( IFRSTM, ILAST ),
      $                     1 )
             ELSE
-               H( ILAST, ILAST ) = H( ILAST, ILAST )*SIGNBC
+               CALL ZSCAL( 1, SIGNBC, H( ILAST, ILAST ), 1 )
             END IF
             IF( ILZ )
      $         CALL ZSCAL( N, SIGNBC, Z( 1, ILAST ), 1 )
@@ -614,22 +740,34 @@
             AD22 = ( ASCALE*H( ILAST, ILAST ) ) /
      $             ( BSCALE*T( ILAST, ILAST ) )
             ABI22 = AD22 - U12*AD21
+            ABI12 = AD12 - U12*AD11
 *
-            T1 = HALF*( AD11+ABI22 )
-            RTDISC = SQRT( T1**2+AD12*AD21-AD11*AD22 )
-            TEMP = DBLE( T1-ABI22 )*DBLE( RTDISC ) +
-     $             DIMAG( T1-ABI22 )*DIMAG( RTDISC )
-            IF( TEMP.LE.ZERO ) THEN
-               SHIFT = T1 + RTDISC
-            ELSE
-               SHIFT = T1 - RTDISC
+            SHIFT = ABI22
+            CTEMP = SQRT( ABI12 )*SQRT( AD21 )
+            TEMP = ABS1( CTEMP )
+            IF( CTEMP.NE.ZERO ) THEN
+               X = HALF*( AD11-SHIFT )
+               TEMP2 = ABS1( X )
+               TEMP = MAX( TEMP, ABS1( X ) )
+               Y = TEMP*SQRT( ( X / TEMP )**2+( CTEMP / TEMP )**2 )
+               IF( TEMP2.GT.ZERO ) THEN
+                  IF( DBLE( X / TEMP2 )*DBLE( Y )+
+     $                DIMAG( X / TEMP2 )*DIMAG( Y ).LT.ZERO )Y = -Y
+               END IF
+               SHIFT = SHIFT - CTEMP*ZLADIV( CTEMP, ( X+Y ) )
             END IF
          ELSE
 *
 *           Exceptional shift.  Chosen for no particularly good reason.
 *
-            ESHIFT = ESHIFT + DCONJG( ( ASCALE*H( ILAST-1, ILAST ) ) /
-     $               ( BSCALE*T( ILAST-1, ILAST-1 ) ) )
+            IF( ( IITER / 20 )*20.EQ.IITER .AND. 
+     $         BSCALE*ABS1(T( ILAST, ILAST )).GT.SAFMIN ) THEN
+               ESHIFT = ESHIFT + ( ASCALE*H( ILAST,
+     $            ILAST ) )/( BSCALE*T( ILAST, ILAST ) )
+            ELSE
+               ESHIFT = ESHIFT + ( ASCALE*H( ILAST,
+     $            ILAST-1 ) )/( BSCALE*T( ILAST-1, ILAST-1 ) )
+            END IF
             SHIFT = ESHIFT
          END IF
 *
@@ -734,7 +872,7 @@
                CALL ZSCAL( J-1, SIGNBC, T( 1, J ), 1 )
                CALL ZSCAL( J, SIGNBC, H( 1, J ), 1 )
             ELSE
-               H( J, J ) = H( J, J )*SIGNBC
+               CALL ZSCAL( 1, SIGNBC, H( J, J ), 1 )
             END IF
             IF( ILZ )
      $         CALL ZSCAL( N, SIGNBC, Z( 1, J ), 1 )

@@ -1,10 +1,183 @@
+*> \brief \b ZGGBAL
+*
+*  =========== DOCUMENTATION ===========
+*
+* Online html documentation available at
+*            http://www.netlib.org/lapack/explore-html/
+*
+*> \htmlonly
+*> Download ZGGBAL + dependencies
+*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.tgz?format=tgz&filename=/lapack/lapack_routine/zggbal.f">
+*> [TGZ]</a>
+*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.zip?format=zip&filename=/lapack/lapack_routine/zggbal.f">
+*> [ZIP]</a>
+*> <a href="http://www.netlib.org/cgi-bin/netlibfiles.txt?format=txt&filename=/lapack/lapack_routine/zggbal.f">
+*> [TXT]</a>
+*> \endhtmlonly
+*
+*  Definition:
+*  ===========
+*
+*       SUBROUTINE ZGGBAL( JOB, N, A, LDA, B, LDB, ILO, IHI, LSCALE,
+*                          RSCALE, WORK, INFO )
+*
+*       .. Scalar Arguments ..
+*       CHARACTER          JOB
+*       INTEGER            IHI, ILO, INFO, LDA, LDB, N
+*       ..
+*       .. Array Arguments ..
+*       DOUBLE PRECISION   LSCALE( * ), RSCALE( * ), WORK( * )
+*       COMPLEX*16         A( LDA, * ), B( LDB, * )
+*       ..
+*
+*
+*> \par Purpose:
+*  =============
+*>
+*> \verbatim
+*>
+*> ZGGBAL balances a pair of general complex matrices (A,B).  This
+*> involves, first, permuting A and B by similarity transformations to
+*> isolate eigenvalues in the first 1 to ILO$-$1 and last IHI+1 to N
+*> elements on the diagonal; and second, applying a diagonal similarity
+*> transformation to rows and columns ILO to IHI to make the rows
+*> and columns as close in norm as possible. Both steps are optional.
+*>
+*> Balancing may reduce the 1-norm of the matrices, and improve the
+*> accuracy of the computed eigenvalues and/or eigenvectors in the
+*> generalized eigenvalue problem A*x = lambda*B*x.
+*> \endverbatim
+*
+*  Arguments:
+*  ==========
+*
+*> \param[in] JOB
+*> \verbatim
+*>          JOB is CHARACTER*1
+*>          Specifies the operations to be performed on A and B:
+*>          = 'N':  none:  simply set ILO = 1, IHI = N, LSCALE(I) = 1.0
+*>                  and RSCALE(I) = 1.0 for i=1,...,N;
+*>          = 'P':  permute only;
+*>          = 'S':  scale only;
+*>          = 'B':  both permute and scale.
+*> \endverbatim
+*>
+*> \param[in] N
+*> \verbatim
+*>          N is INTEGER
+*>          The order of the matrices A and B.  N >= 0.
+*> \endverbatim
+*>
+*> \param[in,out] A
+*> \verbatim
+*>          A is COMPLEX*16 array, dimension (LDA,N)
+*>          On entry, the input matrix A.
+*>          On exit, A is overwritten by the balanced matrix.
+*>          If JOB = 'N', A is not referenced.
+*> \endverbatim
+*>
+*> \param[in] LDA
+*> \verbatim
+*>          LDA is INTEGER
+*>          The leading dimension of the array A. LDA >= max(1,N).
+*> \endverbatim
+*>
+*> \param[in,out] B
+*> \verbatim
+*>          B is COMPLEX*16 array, dimension (LDB,N)
+*>          On entry, the input matrix B.
+*>          On exit, B is overwritten by the balanced matrix.
+*>          If JOB = 'N', B is not referenced.
+*> \endverbatim
+*>
+*> \param[in] LDB
+*> \verbatim
+*>          LDB is INTEGER
+*>          The leading dimension of the array B. LDB >= max(1,N).
+*> \endverbatim
+*>
+*> \param[out] ILO
+*> \verbatim
+*>          ILO is INTEGER
+*> \endverbatim
+*>
+*> \param[out] IHI
+*> \verbatim
+*>          IHI is INTEGER
+*>          ILO and IHI are set to integers such that on exit
+*>          A(i,j) = 0 and B(i,j) = 0 if i > j and
+*>          j = 1,...,ILO-1 or i = IHI+1,...,N.
+*>          If JOB = 'N' or 'S', ILO = 1 and IHI = N.
+*> \endverbatim
+*>
+*> \param[out] LSCALE
+*> \verbatim
+*>          LSCALE is DOUBLE PRECISION array, dimension (N)
+*>          Details of the permutations and scaling factors applied
+*>          to the left side of A and B.  If P(j) is the index of the
+*>          row interchanged with row j, and D(j) is the scaling factor
+*>          applied to row j, then
+*>            LSCALE(j) = P(j)    for J = 1,...,ILO-1
+*>                      = D(j)    for J = ILO,...,IHI
+*>                      = P(j)    for J = IHI+1,...,N.
+*>          The order in which the interchanges are made is N to IHI+1,
+*>          then 1 to ILO-1.
+*> \endverbatim
+*>
+*> \param[out] RSCALE
+*> \verbatim
+*>          RSCALE is DOUBLE PRECISION array, dimension (N)
+*>          Details of the permutations and scaling factors applied
+*>          to the right side of A and B.  If P(j) is the index of the
+*>          column interchanged with column j, and D(j) is the scaling
+*>          factor applied to column j, then
+*>            RSCALE(j) = P(j)    for J = 1,...,ILO-1
+*>                      = D(j)    for J = ILO,...,IHI
+*>                      = P(j)    for J = IHI+1,...,N.
+*>          The order in which the interchanges are made is N to IHI+1,
+*>          then 1 to ILO-1.
+*> \endverbatim
+*>
+*> \param[out] WORK
+*> \verbatim
+*>          WORK is DOUBLE PRECISION array, dimension (lwork)
+*>          lwork must be at least max(1,6*N) when JOB = 'S' or 'B', and
+*>          at least 1 when JOB = 'N' or 'P'.
+*> \endverbatim
+*>
+*> \param[out] INFO
+*> \verbatim
+*>          INFO is INTEGER
+*>          = 0:  successful exit
+*>          < 0:  if INFO = -i, the i-th argument had an illegal value.
+*> \endverbatim
+*
+*  Authors:
+*  ========
+*
+*> \author Univ. of Tennessee
+*> \author Univ. of California Berkeley
+*> \author Univ. of Colorado Denver
+*> \author NAG Ltd.
+*
+*> \ingroup complex16GBcomputational
+*
+*> \par Further Details:
+*  =====================
+*>
+*> \verbatim
+*>
+*>  See R.C. WARD, Balancing the generalized eigenvalue problem,
+*>                 SIAM J. Sci. Stat. Comp. 2 (1981), 141-152.
+*> \endverbatim
+*>
+*  =====================================================================
       SUBROUTINE ZGGBAL( JOB, N, A, LDA, B, LDB, ILO, IHI, LSCALE,
      $                   RSCALE, WORK, INFO )
 *
-*  -- LAPACK routine (version 3.2) --
+*  -- LAPACK computational routine --
 *  -- LAPACK is a software package provided by Univ. of Tennessee,    --
 *  -- Univ. of California Berkeley, Univ. of Colorado Denver and NAG Ltd..--
-*     November 2006
 *
 *     .. Scalar Arguments ..
       CHARACTER          JOB
@@ -14,93 +187,6 @@
       DOUBLE PRECISION   LSCALE( * ), RSCALE( * ), WORK( * )
       COMPLEX*16         A( LDA, * ), B( LDB, * )
 *     ..
-*
-*  Purpose
-*  =======
-*
-*  ZGGBAL balances a pair of general complex matrices (A,B).  This
-*  involves, first, permuting A and B by similarity transformations to
-*  isolate eigenvalues in the first 1 to ILO$-$1 and last IHI+1 to N
-*  elements on the diagonal; and second, applying a diagonal similarity
-*  transformation to rows and columns ILO to IHI to make the rows
-*  and columns as close in norm as possible. Both steps are optional.
-*
-*  Balancing may reduce the 1-norm of the matrices, and improve the
-*  accuracy of the computed eigenvalues and/or eigenvectors in the
-*  generalized eigenvalue problem A*x = lambda*B*x.
-*
-*  Arguments
-*  =========
-*
-*  JOB     (input) CHARACTER  
-*          Specifies the operations to be performed on A and B:
-*          = 'N':  none:  simply set ILO = 1, IHI = N, LSCALE(I) = 1.0
-*                  and RSCALE(I) = 1.0 for i=1,...,N;
-*          = 'P':  permute only;
-*          = 'S':  scale only;
-*          = 'B':  both permute and scale.
-*
-*  N       (input) INTEGER
-*          The order of the matrices A and B.  N >= 0.
-*
-*  A       (input/output) COMPLEX*16 array, dimension (LDA,N)
-*          On entry, the input matrix A.
-*          On exit, A is overwritten by the balanced matrix.
-*          If JOB = 'N', A is not referenced.
-*
-*  LDA     (input) INTEGER
-*          The leading dimension of the array A. LDA >= max(1,N).
-*
-*  B       (input/output) COMPLEX*16 array, dimension (LDB,N)
-*          On entry, the input matrix B.
-*          On exit, B is overwritten by the balanced matrix.
-*          If JOB = 'N', B is not referenced.
-*
-*  LDB     (input) INTEGER
-*          The leading dimension of the array B. LDB >= max(1,N).
-*
-*  ILO     (output) INTEGER
-*  IHI     (output) INTEGER
-*          ILO and IHI are set to integers such that on exit
-*          A(i,j) = 0 and B(i,j) = 0 if i > j and
-*          j = 1,...,ILO-1 or i = IHI+1,...,N.
-*          If JOB = 'N' or 'S', ILO = 1 and IHI = N.
-*
-*  LSCALE  (output) DOUBLE PRECISION array, dimension (N)
-*          Details of the permutations and scaling factors applied
-*          to the left side of A and B.  If P(j) is the index of the
-*          row interchanged with row j, and D(j) is the scaling factor
-*          applied to row j, then
-*            LSCALE(j) = P(j)    for J = 1,...,ILO-1
-*                      = D(j)    for J = ILO,...,IHI
-*                      = P(j)    for J = IHI+1,...,N.
-*          The order in which the interchanges are made is N to IHI+1,
-*          then 1 to ILO-1.
-*
-*  RSCALE  (output) DOUBLE PRECISION array, dimension (N)
-*          Details of the permutations and scaling factors applied
-*          to the right side of A and B.  If P(j) is the index of the
-*          column interchanged with column j, and D(j) is the scaling
-*          factor applied to column j, then
-*            RSCALE(j) = P(j)    for J = 1,...,ILO-1
-*                      = D(j)    for J = ILO,...,IHI
-*                      = P(j)    for J = IHI+1,...,N.
-*          The order in which the interchanges are made is N to IHI+1,
-*          then 1 to ILO-1.
-*
-*  WORK    (workspace) REAL array, dimension (lwork)
-*          lwork must be at least max(1,6*N) when JOB = 'S' or 'B', and
-*          at least 1 when JOB = 'N' or 'P'.
-*
-*  INFO    (output) INTEGER
-*          = 0:  successful exit
-*          < 0:  if INFO = -i, the i-th argument had an illegal value.
-*
-*  Further Details
-*  ===============
-*
-*  See R.C. WARD, Balancing the generalized eigenvalue problem,
-*                 SIAM J. Sci. Stat. Comp. 2 (1981), 141-152.
 *
 *  =====================================================================
 *
@@ -449,7 +535,7 @@
          IRAB = IZAMAX( N-ILO+1, B( I, ILO ), LDB )
          RAB = MAX( RAB, ABS( B( I, IRAB+ILO-1 ) ) )
          LRAB = INT( LOG10( RAB+SFMIN ) / BASL+ONE )
-         IR = LSCALE( I ) + SIGN( HALF, LSCALE( I ) )
+         IR = INT(LSCALE( I ) + SIGN( HALF, LSCALE( I ) ))
          IR = MIN( MAX( IR, LSFMIN ), LSFMAX, LSFMAX-LRAB )
          LSCALE( I ) = SCLFAC**IR
          ICAB = IZAMAX( IHI, A( 1, I ), 1 )
@@ -457,7 +543,7 @@
          ICAB = IZAMAX( IHI, B( 1, I ), 1 )
          CAB = MAX( CAB, ABS( B( ICAB, I ) ) )
          LCAB = INT( LOG10( CAB+SFMIN ) / BASL+ONE )
-         JC = RSCALE( I ) + SIGN( HALF, RSCALE( I ) )
+         JC = INT(RSCALE( I ) + SIGN( HALF, RSCALE( I ) ))
          JC = MIN( MAX( JC, LSFMIN ), LSFMAX, LSFMAX-LCAB )
          RSCALE( I ) = SCLFAC**JC
   360 CONTINUE

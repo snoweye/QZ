@@ -1,5 +1,6 @@
 dnl Process this file with autoconf to produce a configure script
-AC_INIT(DESCRIPTION)
+AC_INIT
+AC_CONFIG_SRCDIR([DESCRIPTION])
 
 dnl Check chmod
 chmod +x ./inst/ex_verify/run_all.sh
@@ -94,7 +95,7 @@ fi
 
 dnl Check enable internal QZ
 AC_ARG_ENABLE(iqz,
-  AC_HELP_STRING([--enable-iqz], [Enable internal QZ functions, default no.]),
+  AS_HELP_STRING([--enable-iqz],[Enable internal QZ functions, default no.]),
                  [ENABLE_IQZ="yes"], [ENABLE_IQZ="no"])
 if test "X$ENABLE_IQZ" = "Xyes" ; then
   ### Use default to overwrite all above regardless.
@@ -104,5 +105,6 @@ fi
 
 dnl Start to substitute templates
 AC_SUBST(QZ_OBJS)
-AC_OUTPUT(src/Makevars)
+AC_CONFIG_FILES([src/Makevars])
+AC_OUTPUT
 
