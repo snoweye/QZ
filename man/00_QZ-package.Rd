@@ -10,15 +10,6 @@
   precision of LAPACK library (version 3.4.2.)
 }
 \details{
-\tabular{ll}{
-  Package: \tab QZ\cr
-  Type: \tab Package\cr
-%  Version: \tab 0.1-2\cr
-%  Date: \tab 2010-02-18\cr
-  License: \tab MPL\cr
-  LazyLoad: \tab yes\cr
-}
-
   The QZ package contains R functions for generalized eigenvalues and
   QZ decomposition (generalized Schur form) for an N-by-N non-symmetric
   matrix A or paired matrices (A,B) via two main functions, \code{qz.geigen()}
