@@ -1,5 +1,6 @@
 2023-09-03: Ver. 0.2-3
   * Remove the meta table from the doc.
+  * Modify CITATION.
 
 2022-01-07: Ver. 0.2-2
   * Update autoconf to 2.71.
