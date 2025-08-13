@@ -103,7 +103,7 @@
 % \dontrun{
 library(QZ, quiet = TRUE)
 
-### https://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/f08/f08ygf.xml
+### https://support.nag.com/numeric/fl/nagdoc_fl23/xhtml/f08/f08ygf.xml
 S <- exAB4$S
 T <- exAB4$T
 Q <- exAB4$Q

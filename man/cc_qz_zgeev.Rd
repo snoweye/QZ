@@ -64,7 +64,7 @@
 % \dontrun{
 library(QZ, quiet = TRUE)
 
-### https://www.nag.com/lapack-ex/node92.html
+### https://www.netlib.org/lapack/lug/node92.html
 A <- exA1$A
 ret <- qz.zgeev(A)
 

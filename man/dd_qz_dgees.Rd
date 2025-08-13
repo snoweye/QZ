@@ -68,7 +68,7 @@
 % \dontrun{
 library(QZ, quiet = TRUE)
 
-### https://www.nag.com/lapack-ex/node89.html
+### https://www.netlib.org/lapack/lug/node89.html
 A <- exA2$A
 ret <- qz.dgees(A)
 

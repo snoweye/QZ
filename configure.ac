@@ -26,7 +26,7 @@ AC_CHECK_PROG([sed_ok], [sed], [yes], [no], ,)
 AC_CHECK_PROG([grep_ok], [grep], [yes], [no], ,)
 
 dnl Check Rlapack.
-if test "X$echo_ok" = "Xyes" -a "X$grep_ok" = "Xyes"; then
+if test "X$echo_ok" = "Xyes" && test "X$grep_ok" = "Xyes"; then
   Rlapack_ok=`echo ${LAPACK_LIBS} | grep "\-lRlapack"`
   if test "X$Rlapack_ok" = "X"; then
     dnl Rlapack is not found.
@@ -59,7 +59,7 @@ else
   # AC_CHECK_HEADER([R_ext/Lapack.h])
   # AC_CHECK_FUNC([zgeev], [zgeev_ok=yes], [zgeev_ok=no])
 
-  if test "X$ls_ok" = "Xyes" -a "X$sed_ok" = "Xyes" -a "X$grep_ok" = "Xyes"; then
+  if test "X$ls_ok" = "Xyes" && test "X$sed_ok" = "Xyes" && test "X$grep_ok" = "Xyes"; then
     QZ_OBJS=""
     # funcs=`ls src/qz/*.f | sed -e "s/.*\/\(.*\)\.f/\\1/"`
 

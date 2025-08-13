@@ -1,6 +1,6 @@
 library(QZ, quiet = TRUE)
 
-### https://www.nag.com/numeric/fl/nagdoc_fl22/xhtml/F08/f08qgf.xml
+### https://support.nag.com/numeric/fl/nagdoc_fl22/xhtml/F08/f08qgf.xml
 T <- exA4$T
 Q <- exA4$Q
 select <- c(TRUE, FALSE, FALSE, TRUE)

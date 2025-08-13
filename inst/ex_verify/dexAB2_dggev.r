@@ -1,6 +1,6 @@
 library(QZ, quiet = TRUE)
 
-### https://www.nag.com/lapack-ex/node117.html
+### https://www.netlib.org/lapack/lug/node117.html
 A <- exAB2$A
 B <- exAB2$B
 ret <- qz.dggev(A, B)

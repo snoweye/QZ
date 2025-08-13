@@ -69,7 +69,7 @@
 % \dontrun{
 library(QZ, quiet = TRUE)
 
-### https://www.nag.com/numeric/fl/nagdoc_fl23/xhtml/f08/f08quf.xml
+### https://support.nag.com/numeric/fl/nagdoc_fl23/xhtml/f08/f08quf.xml
 T <- exA3$T
 Q <- exA3$Q
 select <- c(TRUE, FALSE, FALSE, TRUE)

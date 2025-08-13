@@ -81,7 +81,7 @@
 % \dontrun{
 library(QZ, quiet = TRUE)
 
-### https://www.nag.com/lapack-ex/node124.html
+### https://www.netlib.org/lapack/lug/node124.html
 A <- exAB1$A
 B <- exAB1$B
 ret <- qz.zgges(A, B)
